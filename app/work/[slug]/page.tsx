@@ -1,9 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { PageMotion } from "@/components/page-motion";
-import { RevealText } from "@/components/reveal-text";
-import { projects } from "@/lib/content";
+import { projects, ratioClass } from "@/lib/content";
 
 export function generateStaticParams() {
   return projects.map((project) => ({ slug: project.slug }));
@@ -15,6 +13,8 @@ export async function generateMetadata({ params }: PageProps<"/work/[slug]">): P
   return { title: project ? `${project.name} — Siddharth Thorat` : "Siddharth Thorat" };
 }
 
+const column = "mx-auto w-full max-w-[440px] px-5 lg:mx-0 lg:ml-[33.333%] lg:w-1/3 lg:max-w-none lg:px-3";
+
 export default async function ProjectPage({ params }: PageProps<"/work/[slug]">) {
   const { slug } = await params;
   const index = projects.findIndex((p) => p.slug === slug);
@@ -22,72 +22,42 @@ export default async function ProjectPage({ params }: PageProps<"/work/[slug]">)
   const project = projects[index];
   const next = projects[(index + 1) % projects.length];
 
-  const meta = [
-    ["Role", project.role],
-    ["Medium", project.kind],
-    ["Year", project.year],
-  ];
-
   return (
-    <main>
-      <PageMotion />
-
-      <section className="px-5 pb-12 pt-32 sm:px-10 sm:pt-40">
-        <Link href="/#work" className="u-draw pb-0.5 text-sm text-muted">
-          ← All work
+    <main className="pb-40">
+      <section className={`${column} pt-[12vh]`}>
+        <Link href="/" className="text-muted transition-colors hover:text-ink">
+          ← Siddharth Thorat
         </Link>
-        <RevealText
-          as="h1"
-          mode="load"
-          text={project.name}
-          className="mt-10 text-[13vw] font-medium leading-[0.88] tracking-[-0.05em] sm:text-[10vw]"
-        />
-        <dl data-fade="0.4" className="mt-12 grid grid-cols-3 gap-6 border-t border-line pt-5 text-sm">
-          {meta.map(([label, value]) => (
-            <div key={label}>
-              <dt className="text-muted">{label}</dt>
-              <dd className="mt-1">{value}</dd>
-            </div>
-          ))}
+        <div className="enter mt-12">
+          <h1>{project.name}</h1>
+          <p className="text-muted">{project.kind}</p>
+        </div>
+        <p className="enter mt-8" style={{ "--i": 1 } as React.CSSProperties}>
+          {project.summary}
+        </p>
+        <dl className="enter mt-8 grid grid-cols-[5rem_1fr]" style={{ "--i": 2 } as React.CSSProperties}>
+          <dt className="text-muted">Role</dt>
+          <dd>{project.role}</dd>
+          <dt className="text-muted">Year</dt>
+          <dd>{project.year}</dd>
         </dl>
       </section>
 
-      <div data-fade="0.55" className="mx-5 aspect-[16/9] sm:mx-10" style={{ background: project.tone }} />
-
-      <section className="grid gap-10 px-5 py-24 sm:px-10 md:grid-cols-12">
-        <p className="text-sm text-muted md:col-span-4">Overview</p>
-        <RevealText
-          text={project.summary}
-          className="text-2xl leading-snug tracking-[-0.015em] sm:text-4xl md:col-span-8"
-        />
-      </section>
-
-      <section className="grid gap-5 px-5 sm:px-10 md:grid-cols-2 md:gap-8">
-        <div data-fade className="aspect-[4/5] bg-[#d6d2c9]" />
-        <div data-fade="0.1" className="aspect-[4/5] bg-[#c8cbc6]" />
-        <div data-fade className="aspect-[16/9] bg-[#dcd6cc] md:col-span-2" />
-      </section>
-
-      <section className="grid gap-10 px-5 py-24 sm:px-10 md:grid-cols-12">
-        <p className="text-sm text-muted md:col-span-4">Process</p>
-        <p data-fade className="max-w-2xl text-lg leading-relaxed text-muted md:col-span-8">
-          The story of the project in a few short paragraphs: the problem, the moves you made, and
-          what changed because of it. Placeholder text.
-        </p>
-      </section>
-
-      <Link
-        href={`/work/${next.slug}`}
-        className="group block border-t border-line px-5 pb-16 pt-10 sm:px-10"
+      <section
+        className="enter mx-auto mt-24 w-full max-w-[1100px] space-y-2 px-5 lg:px-3"
+        style={{ "--i": 3 } as React.CSSProperties}
       >
-        <p className="text-sm text-muted">Next project</p>
-        <p className="mt-4 flex items-baseline justify-between text-[9vw] font-medium leading-none tracking-[-0.045em]">
-          <span>{next.name}</span>
-          <span className="text-[5vw] transition-transform duration-300 ease-[var(--ease-out)] group-hover:translate-x-2">
-            →
-          </span>
-        </p>
-      </Link>
+        {project.visuals.map((visual, i) => (
+          <div key={i} className={`mx-auto rounded-lg ${ratioClass[visual.ratio]} ${visual.ratio === "portrait" ? "max-w-[60%]" : "w-full"}`} style={{ background: visual.tone }} />
+        ))}
+      </section>
+
+      <section className={`${column} mt-24`}>
+        <p className="text-muted">Next</p>
+        <Link href={`/work/${next.slug}`} className="transition-colors hover:text-muted">
+          {next.name} →
+        </Link>
+      </section>
     </main>
   );
 }

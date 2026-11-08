@@ -1,13 +1,11 @@
 @import "tailwindcss";
 
 :root {
-  --paper: #efede8;
-  --ink: #121211;
-  --muted: #6c6a65;
-  --line: rgb(18 18 17 / 0.14);
-  --signal: #ff4f00;
+  --paper: #ffffff;
+  --ink: #111111;
+  --muted: #9a9a9a;
+  --line: #ececec;
   --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
-  --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
 }
 
 @theme inline {
@@ -15,10 +13,8 @@
   --color-ink: var(--ink);
   --color-muted: var(--muted);
   --color-line: var(--line);
-  --color-signal: var(--signal);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
-  --font-serif: var(--font-instrument-serif);
 }
 
 html {
@@ -28,88 +24,36 @@ html {
 
 body {
   font-family: var(--font-sans), sans-serif;
-  font-feature-settings: "ss01";
+  font-size: 14px;
+  line-height: 1.45;
+  letter-spacing: -0.005em;
 }
 
 ::selection {
-  background: var(--signal);
+  background: var(--ink);
   color: var(--paper);
 }
 
 :focus-visible {
-  outline: 1.5px solid var(--signal);
+  outline: 1px solid var(--ink);
   outline-offset: 3px;
 }
 
-/* Lenis */
-html.lenis,
-html.lenis body {
-  height: auto;
+/* Blocks settle in once on load, a few at a time. */
+.enter {
+  animation: enter 700ms var(--ease-out) both;
+  animation-delay: calc(var(--i, 0) * 70ms);
 }
-.lenis.lenis-smooth {
-  scroll-behavior: auto !important;
-}
-.lenis.lenis-stopped {
-  overflow: clip;
-}
-
-/* Word reveals: hidden only once the inline script confirms motion is wanted. */
-.r-mask {
-  display: inline-block;
-  overflow: clip;
-  vertical-align: top;
-  padding-bottom: 0.08em;
-  margin-bottom: -0.08em;
-}
-.r-word {
-  display: inline-block;
-  will-change: transform;
-}
-[data-motion="on"] [data-reveal] .r-word {
-  transform: translateY(105%);
-}
-[data-motion="on"] [data-fade] {
-  opacity: 0;
-}
-
-/* Link underline that draws from the left. */
-.u-draw {
-  background-image: linear-gradient(currentColor, currentColor);
-  background-size: 0% 1px;
-  background-position: 0 100%;
-  background-repeat: no-repeat;
-  transition: background-size 300ms var(--ease-out);
-}
-@media (hover: hover) and (pointer: fine) {
-  .u-draw:hover {
-    background-size: 100% 1px;
+@keyframes enter {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
   }
 }
-
-/* Experience rows: ink wipes up from the bottom on hover. */
-.row-wipe::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: var(--ink);
-  clip-path: inset(100% 0 0 0);
-  transition: clip-path 380ms var(--ease-out);
-}
-@media (hover: hover) and (pointer: fine) {
-  .row-wipe:hover::before {
-    clip-path: inset(0 0 0 0);
+@media (prefers-reduced-motion: reduce) {
+  .enter {
+    animation: none;
   }
-  .row-wipe:hover > div,
-  .row-wipe:hover > div span {
-    color: var(--paper);
-  }
-}
-
-.press {
-  transition: transform 160ms var(--ease-out);
-}
-.press:active {
-  transform: scale(0.97);
 }
 
 .no-scrollbar {

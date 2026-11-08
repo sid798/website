@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono, Instrument_Serif } from "next/font/google";
-import { SmoothScroll } from "@/components/smooth-scroll";
-import { Nav } from "@/components/nav";
+import { Geist, Geist_Mono } from "next/font/google";
+import { VersionSwitch } from "@/components/version-switch";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -14,34 +13,17 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-const instrumentSerif = Instrument_Serif({
-  variable: "--font-instrument-serif",
-  subsets: ["latin"],
-  weight: "400",
-  style: ["normal", "italic"],
-});
-
 export const metadata: Metadata = {
   title: "Siddharth Thorat",
   description: "Designer working across brand, product, motion, print, space and code.",
 };
 
-const motionScript = `(function(){try{if(matchMedia("(prefers-reduced-motion: reduce)").matches)return;var d=document.documentElement;d.setAttribute("data-motion","on");setTimeout(function(){if(!window.__motionReady)d.removeAttribute("data-motion")},3500)}catch(e){}})()`;
-
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html
-      lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} ${instrumentSerif.variable} antialiased`}
-      suppressHydrationWarning
-    >
-      <head>
-        <script dangerouslySetInnerHTML={{ __html: motionScript }} />
-      </head>
+    <html lang="en" className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
       <body className="min-h-svh bg-paper text-ink">
-        <SmoothScroll />
-        <Nav />
         {children}
+        <VersionSwitch />
       </body>
     </html>
   );
