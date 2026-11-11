@@ -74,16 +74,9 @@ export default function Home() {
           <Label>Archives</Label>
         </div>
         <ul className={`no-scrollbar mt-3 flex snap-x snap-proximity items-start gap-2 overflow-x-auto ${rowPad}`}>
-          {archives.flatMap((project) =>
-            project.visuals.map((visual, i) => (
-              <li key={`${project.slug}-${i}`} className="shrink-0 snap-start">
-                <div className={`h-[26vh] min-h-[160px] overflow-hidden rounded-lg ${ratioClass[visual.ratio]}`}>
-                  <Media visual={visual} />
-                </div>
-                {i === 0 ? <p className="mt-2 px-1.5">{project.name}</p> : null}
-              </li>
-            )),
-          )}
+          {archives.map((project) => (
+            <Card key={project.slug} project={project} height="h-[30vh] min-h-[180px]" />
+          ))}
         </ul>
       </section>
 
