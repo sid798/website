@@ -1,9 +1,10 @@
 "use client";
 
-import Link from "next/link";
 import { useRef, useState } from "react";
 import { CodeDemo } from "@/components/code-demo";
-import { about, connect, experience, intro, projects, ratioClass } from "@/lib/content";
+import { Media } from "@/components/media";
+import { ProjectMeta } from "@/components/project-meta";
+import { about, archives, connect, experience, intro, projects, ratioClass } from "@/lib/content";
 
 function Label({ children }: { children: React.ReactNode }) {
   return <p className="text-muted">{children}</p>;
@@ -11,13 +12,19 @@ function Label({ children }: { children: React.ReactNode }) {
 
 const col = "lg:h-svh lg:overflow-y-auto no-scrollbar px-5 lg:px-3";
 
-export function Columns() {
-  const [active, setActive] = useState(0);
-  const visuals = useRef<HTMLDivElement>(null);
-  const project = projects[active];
+const groups = [
+  { label: "Selected Work", items: projects },
+  { label: "Archives", items: archives },
+];
+const all = [...projects, ...archives];
 
-  function select(i: number) {
-    setActive(i);
+export function Columns() {
+  const [active, setActive] = useState(projects[0].slug);
+  const visuals = useRef<HTMLDivElement>(null);
+  const project = all.find((p) => p.slug === active) ?? projects[0];
+
+  function select(slug: string) {
+    setActive(slug);
     visuals.current?.scrollTo({ top: 0 });
   }
 
@@ -44,8 +51,8 @@ export function Columns() {
         <div>
           <Label>Experience</Label>
           <ul className="mt-1">
-            {experience.map((item, i) => (
-              <li key={i} className="flex justify-between gap-4">
+            {experience.map((item) => (
+              <li key={item.role} className="flex justify-between gap-4">
                 <span>
                   {item.role}, {item.place}
                 </span>
@@ -73,50 +80,46 @@ export function Columns() {
       <div ref={visuals} className={`${col} order-3 pb-24 pt-2 lg:order-none lg:pt-6`} aria-label={`${project.name} visuals`}>
         <div key={project.slug} className="enter space-y-2">
           {project.visuals.map((visual, i) => (
-            <div
-              key={i}
-              className={`w-full rounded-lg ${ratioClass[visual.ratio]}`}
-              style={{ background: visual.tone }}
-            />
+            <div key={i} className={`w-full overflow-hidden rounded-lg ${ratioClass[visual.ratio]}`}>
+              <Media visual={visual} />
+            </div>
           ))}
         </div>
       </div>
 
-      <section className={`${col} order-2 pb-8 lg:order-none lg:pb-24 lg:pt-6`}>
-        <Label>Selected Work</Label>
-        <ul className="mt-1">
-          {projects.map((p, i) => (
-            <li key={p.slug}>
-              <button
-                type="button"
-                onClick={() => select(i)}
-                aria-pressed={i === active}
-                className={`flex w-full justify-between gap-4 text-left transition-colors duration-200 ${
-                  i === active ? "text-ink" : "text-muted hover:text-ink"
-                }`}
-              >
-                <span>{p.name}</span>
-                <span className="tabular-nums">{p.year}</span>
-              </button>
-            </li>
-          ))}
-        </ul>
+      <section className={`${col} order-2 space-y-10 pb-8 lg:order-none lg:pb-24 lg:pt-6`}>
+        {groups.map((group) => (
+          <div key={group.label}>
+            <Label>{group.label}</Label>
+            <ul className="mt-1">
+              {group.items.map((p) => (
+                <li key={p.slug}>
+                  <button
+                    type="button"
+                    onClick={() => select(p.slug)}
+                    aria-pressed={p.slug === active}
+                    className={`flex w-full justify-between gap-4 text-left transition-colors duration-200 ${
+                      p.slug === active ? "text-ink" : "text-muted hover:text-ink"
+                    }`}
+                  >
+                    <span>{p.name}</span>
+                    <span>{p.scope[0]}</span>
+                  </button>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
 
-        <div key={project.slug} className="enter mt-14 space-y-4">
+        <div key={project.slug} className="enter space-y-4 pt-4">
           <div>
             <p>{project.name}</p>
-            <p className="text-muted">{project.kind}</p>
+            <p className="text-muted">
+              {project.scope.join(", ")} · {project.context}
+            </p>
           </div>
           <p>{project.summary}</p>
-          <dl className="grid grid-cols-[5rem_1fr]">
-            <dt className="text-muted">Role</dt>
-            <dd>{project.role}</dd>
-            <dt className="text-muted">Year</dt>
-            <dd>{project.year}</dd>
-          </dl>
-          <Link href={`/work/${project.slug}`} className="inline-block text-muted transition-colors hover:text-ink">
-            Open case study →
-          </Link>
+          <ProjectMeta project={project} />
         </div>
       </section>
     </main>

@@ -1,39 +1,50 @@
-export type Visual = { ratio: "portrait" | "landscape" | "square"; tone: string };
+export type Visual = {
+  ratio: "portrait" | "landscape" | "square";
+  tone: string;
+  /** Looping MP4/WebM in /public. Leave unset until the file exists. */
+  video?: string;
+  /** Still frame or image in /public. Also the cover shown before a video plays. */
+  image?: string;
+};
 
 export type Project = {
   slug: string;
   name: string;
-  kind: string;
-  year: string;
-  role: string;
+  scope: string[];
+  context: string;
+  year?: string;
   summary: string;
+  facts?: string[];
+  nda?: boolean;
+  link?: string;
+  caseStudy?: boolean;
   visuals: Visual[];
 };
 
-const summary =
-  "One or two sentences on the brief, what you made, and why it mattered. Placeholder text until the real case study is written.";
+export const ndaNote = "Under NDA. Detailed walkthrough available on request.";
 
 export const projects: Project[] = [
   {
-    slug: "project-one",
-    name: "Project One",
-    kind: "Brand Identity",
-    year: "2026",
-    role: "Design Lead",
-    summary,
+    slug: "alai",
+    name: "Alai",
+    scope: ["Product Design", "Web Design"],
+    context: "At Chariot",
+    summary: "Product and website design for Alai.",
+    facts: ["Featured on Product Hunt", "YC-backed"],
+    nda: true,
     visuals: [
       { ratio: "landscape", tone: "#D8D4CC" },
-      { ratio: "portrait", tone: "#CFCAC0" },
-      { ratio: "landscape", tone: "#E2DED6" },
+      { ratio: "landscape", tone: "#CFCAC0" },
+      { ratio: "portrait", tone: "#E2DED6" },
     ],
   },
   {
-    slug: "project-two",
-    name: "Project Two",
-    kind: "Product Design",
-    year: "2025",
-    role: "Product Designer",
-    summary,
+    slug: "healthflex",
+    name: "Healthflex by Loop",
+    scope: ["Website Design"],
+    context: "At Chariot",
+    summary: "Website design for Healthflex by Loop.",
+    nda: true,
     visuals: [
       { ratio: "landscape", tone: "#C9CEC8" },
       { ratio: "landscape", tone: "#BFC5BF" },
@@ -41,55 +52,83 @@ export const projects: Project[] = [
     ],
   },
   {
-    slug: "project-three",
-    name: "Project Three",
-    kind: "Motion",
-    year: "2025",
-    role: "Motion Designer",
-    summary,
+    slug: "atlabs",
+    name: "Atlabs",
+    scope: ["Product Design", "Website Design"],
+    context: "At Chariot",
+    summary: "Product and website design for Atlabs.",
+    nda: true,
     visuals: [
-      { ratio: "square", tone: "#2B2B29" },
-      { ratio: "landscape", tone: "#3A3A37" },
+      { ratio: "landscape", tone: "#2B2B29" },
+      { ratio: "square", tone: "#3A3A37" },
       { ratio: "landscape", tone: "#242422" },
     ],
   },
   {
-    slug: "project-four",
-    name: "Project Four",
-    kind: "Editorial",
-    year: "2024",
-    role: "Art Direction",
-    summary,
+    slug: "freight-tiger",
+    name: "Freight Tiger",
+    scope: ["Website Design"],
+    context: "At Chariot",
+    summary: "Website design for Freight Tiger.",
+    nda: true,
     visuals: [
-      { ratio: "portrait", tone: "#E3D7C6" },
+      { ratio: "landscape", tone: "#C3C9CF" },
+      { ratio: "landscape", tone: "#B6BDC4" },
+      { ratio: "portrait", tone: "#CDD2D7" },
+    ],
+  },
+  {
+    slug: "cruise-money",
+    name: "Cruise Money",
+    scope: ["Website Design", "Marketing"],
+    context: "At Chariot",
+    summary: "Website design and marketing for Cruise Money.",
+    nda: true,
+    visuals: [
+      { ratio: "landscape", tone: "#E3D7C6" },
       { ratio: "portrait", tone: "#D9CCB9" },
       { ratio: "landscape", tone: "#EADFD0" },
     ],
   },
   {
-    slug: "project-five",
-    name: "Project Five",
-    kind: "Spatial",
-    year: "2024",
-    role: "Designer",
-    summary,
+    slug: "life-in-progress",
+    name: "Life in Progress",
+    scope: ["Product Design", "Creative Direction"],
+    context: "Personal project",
+    summary:
+      "Product design and creative direction for Life in Progress, a personal project. Placeholder: one or two sentences on what it is and why you made it.",
+    caseStudy: true,
     visuals: [
-      { ratio: "landscape", tone: "#C3C9CF" },
-      { ratio: "square", tone: "#B6BDC4" },
-      { ratio: "landscape", tone: "#CDD2D7" },
+      { ratio: "landscape", tone: "#30312F" },
+      { ratio: "portrait", tone: "#1F201E" },
+      { ratio: "landscape", tone: "#3B3C39" },
+    ],
+  },
+];
+
+export const archives: Project[] = [
+  {
+    slug: "india-art-fair",
+    name: "India Art Fair",
+    scope: ["Graphic Design"],
+    context: "Archive",
+    summary: "Work for India Art Fair. Placeholder: one line on what this was.",
+    visuals: [
+      { ratio: "portrait", tone: "#E6D9C2" },
+      { ratio: "portrait", tone: "#DCCDB2" },
+      { ratio: "square", tone: "#EFE5D4" },
     ],
   },
   {
-    slug: "project-six",
-    name: "Project Six",
-    kind: "Creative Coding",
-    year: "2023",
-    role: "Design & Engineering",
-    summary,
+    slug: "jazz-de-montreal",
+    name: "Jazz de Montréal",
+    scope: ["Graphic Design"],
+    context: "Archive",
+    summary: "Work for Jazz de Montréal. Placeholder: one line on what this was.",
     visuals: [
-      { ratio: "landscape", tone: "#30312F" },
-      { ratio: "landscape", tone: "#1F201E" },
-      { ratio: "portrait", tone: "#3B3C39" },
+      { ratio: "portrait", tone: "#C7CCD6" },
+      { ratio: "square", tone: "#BAC0CC" },
+      { ratio: "portrait", tone: "#D3D7DF" },
     ],
   },
 ];
@@ -105,10 +144,8 @@ export const about = [
 ];
 
 export const experience = [
-  { role: "Role Title", place: "Company", years: "2024 — Now" },
-  { role: "Role Title", place: "Company", years: "2022 — 2024" },
-  { role: "Role Title", place: "Company", years: "2020 — 2022" },
-  { role: "Role Title", place: "Company", years: "2019 — 2020" },
+  { role: "Product Designer", place: "Chariot", years: "2024 — 2026" },
+  { role: "Freelance Graphic Designer", place: "Independent", years: "2022 — 2024" },
 ];
 
 export const connect = ["Email", "LinkedIn", "Instagram", "Read.cv"];

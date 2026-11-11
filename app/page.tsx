@@ -1,11 +1,46 @@
 import Link from "next/link";
 import { CodeDemo } from "@/components/code-demo";
-import { about, connect, experience, intro, projects, ratioClass } from "@/lib/content";
+import { Media } from "@/components/media";
+import { ProjectMeta } from "@/components/project-meta";
+import { about, archives, connect, experience, intro, projects, ratioClass, type Project } from "@/lib/content";
 
 const column = "mx-auto w-full max-w-[440px] px-5 lg:mx-0 lg:ml-[33.333%] lg:w-1/3 lg:max-w-none lg:px-3";
+const rowPad = "px-5 scroll-px-5 lg:pl-[calc(33.333%-0.25rem)] lg:pr-3 lg:scroll-pl-[calc(33.333%-0.25rem)]";
 
 function Label({ children }: { children: React.ReactNode }) {
   return <p className="text-muted">{children}</p>;
+}
+
+function Card({ project, height }: { project: Project; height: string }) {
+  const cover = project.visuals[0];
+  const frame = (
+    <div className={`${height} overflow-hidden rounded-lg ${ratioClass[cover.ratio]}`}>
+      <Media
+        visual={cover}
+        className={project.caseStudy ? "transition-transform duration-700 ease-[var(--ease-out)] group-hover:scale-[1.02]" : ""}
+      />
+    </div>
+  );
+  return (
+    <li className="shrink-0 snap-start">
+      {project.caseStudy ? (
+        <Link href={`/work/${project.slug}`} className="group block">
+          {frame}
+        </Link>
+      ) : (
+        frame
+      )}
+      <div className="mt-2 max-w-[340px] space-y-2 px-1.5">
+        <div>
+          <p>{project.name}</p>
+          <p className="text-muted">
+            {project.scope.join(", ")} · {project.context}
+          </p>
+        </div>
+        <ProjectMeta project={project} />
+      </div>
+    </li>
+  );
 }
 
 export default function Home() {
@@ -23,41 +58,40 @@ export default function Home() {
         </div>
       </section>
 
-      <section
-        aria-label="Work"
-        className="enter mt-32"
-        style={{ "--i": 2 } as React.CSSProperties}
-      >
-        <ul className="no-scrollbar flex snap-x snap-proximity gap-2 overflow-x-auto px-5 scroll-px-5 lg:pl-[calc(33.333%-0.25rem)] lg:pr-3 lg:scroll-pl-[calc(33.333%-0.25rem)]">
-          {projects.map((project) => {
-            const cover = project.visuals[0];
-            return (
-              <li key={project.slug} className="shrink-0 snap-start">
-                <Link href={`/work/${project.slug}`} className="group block">
-                  <div
-                    className={`h-[38vh] min-h-[220px] overflow-hidden rounded-lg ${ratioClass[cover.ratio]}`}
-                  >
-                    <div
-                      className="size-full transition-transform duration-700 ease-[var(--ease-out)] group-hover:scale-[1.02]"
-                      style={{ background: cover.tone }}
-                    />
-                  </div>
-                  <div className="mt-2 px-1.5">
-                    <p>{project.name}</p>
-                    <p className="text-muted">{project.kind}</p>
-                  </div>
-                </Link>
+      <section aria-label="Selected work" className="enter mt-32" style={{ "--i": 2 } as React.CSSProperties}>
+        <div className={column}>
+          <Label>Selected Work</Label>
+        </div>
+        <ul className={`no-scrollbar mt-3 flex snap-x snap-proximity items-start gap-2 overflow-x-auto ${rowPad}`}>
+          {projects.map((project) => (
+            <Card key={project.slug} project={project} height="h-[38vh] min-h-[220px]" />
+          ))}
+        </ul>
+      </section>
+
+      <section aria-label="Archives" className="mt-24">
+        <div className={column}>
+          <Label>Archives</Label>
+        </div>
+        <ul className={`no-scrollbar mt-3 flex snap-x snap-proximity items-start gap-2 overflow-x-auto ${rowPad}`}>
+          {archives.flatMap((project) =>
+            project.visuals.map((visual, i) => (
+              <li key={`${project.slug}-${i}`} className="shrink-0 snap-start">
+                <div className={`h-[26vh] min-h-[160px] overflow-hidden rounded-lg ${ratioClass[visual.ratio]}`}>
+                  <Media visual={visual} />
+                </div>
+                {i === 0 ? <p className="mt-2 px-1.5">{project.name}</p> : null}
               </li>
-            );
-          })}
+            )),
+          )}
         </ul>
       </section>
 
       <section className={`${column} mt-32`}>
         <Label>Experience</Label>
         <ul className="mt-1">
-          {experience.map((item, i) => (
-            <li key={i} className="flex justify-between gap-6">
+          {experience.map((item) => (
+            <li key={item.role} className="flex justify-between gap-6">
               <span>
                 {item.role}, {item.place}
               </span>
