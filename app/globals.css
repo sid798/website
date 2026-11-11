@@ -56,6 +56,11 @@ body {
   }
 }
 
+.marker-on,
+.marker-on * {
+  cursor: none !important;
+}
+
 .no-scrollbar {
   scrollbar-width: none;
 }

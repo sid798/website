@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { CodeDemo } from "@/components/code-demo";
+import { MarkerTrail } from "@/components/marker-trail";
 import { Media } from "@/components/media";
 import { ProjectMeta } from "@/components/project-meta";
 import { about, archives, connect, experience, intro, projects, ratioClass, type Project } from "@/lib/content";
@@ -46,6 +47,7 @@ function Card({ project, height }: { project: Project; height: string }) {
 export default function Home() {
   return (
     <main className="pb-40">
+      <MarkerTrail />
       <section className={`${column} pt-[12vh]`}>
         <div className="enter" style={{ "--i": 0 } as React.CSSProperties}>
           <h1>Siddharth Thorat</h1>
