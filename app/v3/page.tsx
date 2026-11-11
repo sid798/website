@@ -1,5 +1,5 @@
-import { Paper } from "@/components/paper";
+import { Split } from "@/components/split";
 
 export default function V3() {
-  return <Paper />;
+  return <Split />;
 }

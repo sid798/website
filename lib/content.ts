@@ -150,21 +150,6 @@ export const experience = [
 
 export const connect = ["Email", "LinkedIn", "Instagram", "Read.cv"];
 
-export type Track = {
-  title: string;
-  artist: string;
-  /** Album art in /public or a remote URL. */
-  cover?: string;
-  /** A short audio preview the disc can play. */
-  preview?: string;
-  url?: string;
-};
-
-export const nowPlaying: Track = {
-  title: "Track Title",
-  artist: "Artist Name",
-};
-
 export const ratioClass: Record<Visual["ratio"], string> = {
   portrait: "aspect-[4/5]",
   landscape: "aspect-[3/2]",

@@ -11,7 +11,7 @@ export function VersionSwitch() {
         V2 Columns
       </Link>
       <Link href="/v3" className="rounded-full px-3 py-1 hover:bg-[#f2f2f2]">
-        V3 Paper
+        V3 Split
       </Link>
     </nav>
   );
