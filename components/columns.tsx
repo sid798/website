@@ -102,7 +102,7 @@ export function Columns() {
 
       <div
         ref={visuals}
-        className={`hidden border-x border-line px-3 pb-24 pt-6 lg:block ${scroll}`}
+        className={`hidden border-x border-line px-3 pb-6 pt-6 lg:block ${scroll}`}
         aria-label={`${project.name} visuals`}
       >
         <div key={project.slug} className="enter space-y-2">

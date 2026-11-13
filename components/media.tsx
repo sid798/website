@@ -1,12 +1,12 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import type { Visual } from "@/lib/content";
+import type { Screen, Visual } from "@/lib/content";
 
 /** Where the transparent screen sits inside /work/device-phone.png (1666 × 3393). */
 const phoneScreen = { left: "5.2%", top: "2.2%", width: "89.7%", height: "95.6%" };
 
-function Fill({ visual }: { visual: Visual }) {
+function Fill({ screen }: { screen: Screen }) {
   const video = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
@@ -20,52 +20,65 @@ function Fill({ visual }: { visual: Visual }) {
     return () => io.disconnect();
   }, []);
 
-  if (visual.video?.length) {
+  if (screen.video?.length) {
     return (
       <video
         ref={video}
         className="size-full object-cover"
-        poster={visual.image}
+        poster={screen.image}
         muted
         loop
         playsInline
         preload="none"
         aria-hidden="true"
       >
-        {visual.video.map((src) => (
+        {screen.video.map((src) => (
           <source key={src} src={src} type={src.endsWith(".webm") ? "video/webm" : "video/mp4"} />
         ))}
       </video>
     );
   }
 
-  if (visual.image) {
+  if (screen.image) {
     // eslint-disable-next-line @next/next/no-img-element
-    return <img className="size-full object-cover" src={visual.image} alt="" loading="lazy" />;
+    return <img className="size-full object-cover" src={screen.image} alt="" loading="lazy" />;
   }
 
   return null;
 }
 
+function Phone({ screen }: { screen: Screen }) {
+  return (
+    <div className="relative aspect-[1666/3393] h-full">
+      <div className="absolute overflow-hidden rounded-[13%/6.4%]" style={phoneScreen}>
+        <Fill screen={screen} />
+      </div>
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img className="absolute inset-0 size-full" src="/work/device-phone.png" alt="" loading="lazy" />
+    </div>
+  );
+}
+
 /** A project visual: a looping video when one exists, else an image, else a tone block. */
 export function Media({ visual, className = "" }: { visual: Visual; className?: string }) {
-  if (visual.device === "phone") {
+  if (visual.phones?.length) {
     return (
-      <div className={`flex size-full items-center justify-center ${className}`} style={{ background: visual.tone }}>
-        <div className="relative aspect-[1666/3393] h-[86%]">
-          <div className="absolute overflow-hidden rounded-[13%/6.4%]" style={phoneScreen}>
-            <Fill visual={visual} />
+      <div
+        className={`flex size-full items-center justify-center gap-[3%] ${className}`}
+        style={{ background: visual.tone }}
+      >
+        {visual.phones.map((screen, i) => (
+          <div key={i} className={visual.phones!.length > 1 ? "h-[78%]" : "h-[86%]"}>
+            <Phone screen={screen} />
           </div>
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img className="absolute inset-0 size-full" src="/work/device-phone.png" alt="" loading="lazy" />
-        </div>
+        ))}
       </div>
     );
   }
 
   return (
     <div className={`size-full ${className}`} style={{ background: visual.tone }}>
-      <Fill visual={visual} />
+      <Fill screen={visual} />
     </div>
   );
 }

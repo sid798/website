@@ -1,12 +1,15 @@
-export type Visual = {
-  ratio: "portrait" | "landscape" | "square" | "wide" | "classic";
-  tone: string;
+export type Screen = {
   /** Looping video sources in /public, best format first (e.g. WebM, then an MP4 fallback). */
   video?: string[];
   /** Still frame or image in /public. Also the cover shown before a video plays. */
   image?: string;
-  /** Shows the video or image inside a phone frame, centred on the tone colour. */
-  device?: "phone";
+};
+
+export type Visual = Screen & {
+  ratio: "portrait" | "landscape" | "square" | "wide" | "classic";
+  tone: string;
+  /** Shows each screen inside a phone frame, side by side on the tone colour. */
+  phones?: Screen[];
 };
 
 export const placeholder = "#110326";
@@ -99,9 +102,10 @@ export const projects: Project[] = [
       {
         ratio: "wide",
         tone: placeholder,
-        device: "phone",
-        video: ["/work/cruise-money/sayings.webm", "/work/cruise-money/sayings.mp4"],
-        image: "/work/cruise-money/sayings.jpg",
+        phones: ["sayings", "features", "visualisation"].map((name) => ({
+          video: [`/work/cruise-money/${name}.webm`, `/work/cruise-money/${name}.mp4`],
+          image: `/work/cruise-money/${name}.jpg`,
+        })),
       },
     ],
   },
