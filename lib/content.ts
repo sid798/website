@@ -1,5 +1,5 @@
 export type Visual = {
-  ratio: "portrait" | "landscape" | "square";
+  ratio: "portrait" | "landscape" | "square" | "wide" | "classic";
   tone: string;
   /** Looping video sources in /public, best format first (e.g. WebM, then an MP4 fallback). */
   video?: string[];
@@ -90,19 +90,19 @@ export const projects: Project[] = [
     nda: true,
     visuals: [
       {
-        ratio: "portrait",
+        ratio: "wide",
+        tone: placeholder,
+        video: ["/work/cruise-money/hero.webm", "/work/cruise-money/hero.mp4"],
+        image: "/work/cruise-money/hero.jpg",
+      },
+      { ratio: "classic", tone: placeholder, image: "/work/cruise-money/macbook.webp" },
+      {
+        ratio: "wide",
         tone: placeholder,
         device: "phone",
         video: ["/work/cruise-money/sayings.webm", "/work/cruise-money/sayings.mp4"],
         image: "/work/cruise-money/sayings.jpg",
       },
-      {
-        ratio: "portrait",
-        tone: placeholder,
-        video: ["/work/cruise-money/hero.webm", "/work/cruise-money/hero.mp4"],
-        image: "/work/cruise-money/hero.jpg",
-      },
-      { ratio: "portrait", tone: placeholder, image: "/work/cruise-money/macbook.webp" },
     ],
   },
   {
@@ -169,4 +169,6 @@ export const ratioClass: Record<Visual["ratio"], string> = {
   portrait: "aspect-[4/5]",
   landscape: "aspect-[3/2]",
   square: "aspect-square",
+  wide: "aspect-video",
+  classic: "aspect-[4/3]",
 };
