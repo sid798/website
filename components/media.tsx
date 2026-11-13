@@ -6,7 +6,7 @@ import type { Screen, Visual } from "@/lib/content";
 /** Where the transparent screen sits inside /work/device-phone.png (1666 × 3393). */
 const phoneScreen = { left: "5.2%", top: "2.2%", width: "89.7%", height: "95.6%" };
 
-function Fill({ screen }: { screen: Screen }) {
+function Fill({ screen, fit = "object-cover" }: { screen: Screen; fit?: string }) {
   const video = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
@@ -24,7 +24,7 @@ function Fill({ screen }: { screen: Screen }) {
     return (
       <video
         ref={video}
-        className="size-full object-cover"
+        className={`size-full ${fit}`}
         poster={screen.image}
         muted
         loop
@@ -41,7 +41,7 @@ function Fill({ screen }: { screen: Screen }) {
 
   if (screen.image) {
     // eslint-disable-next-line @next/next/no-img-element
-    return <img className="size-full object-cover" src={screen.image} alt="" loading="lazy" />;
+    return <img className={`size-full ${fit}`} src={screen.image} alt="" loading="lazy" />;
   }
 
   return null;
@@ -76,9 +76,17 @@ export function Media({ visual, className = "" }: { visual: Visual; className?: 
     );
   }
 
+  if (visual.fit === "inset") {
+    return (
+      <div className={`flex size-full items-center justify-center p-[6%] ${className}`} style={{ background: visual.tone }}>
+        <Fill screen={visual} fit="object-contain" />
+      </div>
+    );
+  }
+
   return (
     <div className={`size-full ${className}`} style={{ background: visual.tone }}>
-      <Fill screen={visual} />
+      <Fill screen={visual} fit={visual.fit === "contain" ? "object-contain" : "object-cover"} />
     </div>
   );
 }

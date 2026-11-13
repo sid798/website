@@ -10,6 +10,8 @@ export type Visual = Screen & {
   tone: string;
   /** Shows each screen inside a phone frame, side by side on the tone colour. */
   phones?: Screen[];
+  /** "contain" shows the whole media on the tone colour; "inset" also pads it off the edges. */
+  fit?: "contain" | "inset";
 };
 
 export const placeholder = "#110326";
@@ -79,9 +81,21 @@ export const projects: Project[] = [
     summary: "Website design for Freight Tiger.",
     nda: true,
     visuals: [
-      { ratio: "landscape", tone: placeholder },
-      { ratio: "landscape", tone: placeholder },
-      { ratio: "portrait", tone: placeholder },
+      { ratio: "wide", tone: "#ffbe06", fit: "inset", image: "/work/freight-tiger/macbook.webp" },
+      {
+        ratio: "wide",
+        tone: "#0a0a0a",
+        fit: "inset",
+        video: ["/work/freight-tiger/tool.webm", "/work/freight-tiger/tool.mp4"],
+        image: "/work/freight-tiger/tool.jpg",
+      },
+      {
+        ratio: "wide",
+        tone: "#ffffff",
+        fit: "contain",
+        video: ["/work/freight-tiger/feature.webm", "/work/freight-tiger/feature.mp4"],
+        image: "/work/freight-tiger/feature.jpg",
+      },
     ],
   },
   {
