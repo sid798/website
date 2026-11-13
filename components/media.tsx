@@ -60,7 +60,9 @@ function Phone({ screen }: { screen: Screen }) {
 }
 
 /** A project visual: a looping video when one exists, else an image, else a tone block. */
-export function Media({ visual, className = "" }: { visual: Visual; className?: string }) {
+export function Media({ visual, className: extra = "" }: { visual: Visual; className?: string }) {
+  const className = visual.border ? `rounded-[inherit] border border-line ${extra}` : extra;
+
   if (visual.phones?.length) {
     return (
       <div

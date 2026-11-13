@@ -12,6 +12,8 @@ export type Visual = Screen & {
   phones?: Screen[];
   /** "contain" shows the whole media on the tone colour; "inset" also pads it off the edges. */
   fit?: "contain" | "inset";
+  /** A thin soft-grey outline, for tiles that would otherwise vanish into the page. */
+  border?: boolean;
 };
 
 export const placeholder = "#110326";
@@ -92,7 +94,8 @@ export const projects: Project[] = [
       {
         ratio: "wide",
         tone: "#ffffff",
-        fit: "contain",
+        fit: "inset",
+        border: true,
         video: ["/work/freight-tiger/feature.webm", "/work/freight-tiger/feature.mp4"],
         image: "/work/freight-tiger/feature.jpg",
       },
