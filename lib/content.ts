@@ -1,11 +1,15 @@
 export type Visual = {
   ratio: "portrait" | "landscape" | "square";
   tone: string;
-  /** Looping MP4/WebM in /public. Leave unset until the file exists. */
-  video?: string;
+  /** Looping video sources in /public, best format first (e.g. WebM, then an MP4 fallback). */
+  video?: string[];
   /** Still frame or image in /public. Also the cover shown before a video plays. */
   image?: string;
+  /** Shows the video or image inside a phone frame, centred on the tone colour. */
+  device?: "phone";
 };
+
+export const placeholder = "#110326";
 
 export type Project = {
   slug: string;
@@ -33,9 +37,9 @@ export const projects: Project[] = [
     facts: ["Featured on Product Hunt", "YC-backed"],
     nda: true,
     visuals: [
-      { ratio: "landscape", tone: "#D8D4CC" },
-      { ratio: "landscape", tone: "#CFCAC0" },
-      { ratio: "portrait", tone: "#E2DED6" },
+      { ratio: "landscape", tone: placeholder },
+      { ratio: "landscape", tone: placeholder },
+      { ratio: "portrait", tone: placeholder },
     ],
   },
   {
@@ -46,9 +50,9 @@ export const projects: Project[] = [
     summary: "Website design for Healthflex by Loop.",
     nda: true,
     visuals: [
-      { ratio: "landscape", tone: "#C9CEC8" },
-      { ratio: "landscape", tone: "#BFC5BF" },
-      { ratio: "square", tone: "#D5D9D3" },
+      { ratio: "landscape", tone: placeholder },
+      { ratio: "landscape", tone: placeholder },
+      { ratio: "square", tone: placeholder },
     ],
   },
   {
@@ -59,9 +63,9 @@ export const projects: Project[] = [
     summary: "Product and website design for Atlabs.",
     nda: true,
     visuals: [
-      { ratio: "landscape", tone: "#2B2B29" },
-      { ratio: "square", tone: "#3A3A37" },
-      { ratio: "landscape", tone: "#242422" },
+      { ratio: "landscape", tone: placeholder },
+      { ratio: "square", tone: placeholder },
+      { ratio: "landscape", tone: placeholder },
     ],
   },
   {
@@ -72,9 +76,9 @@ export const projects: Project[] = [
     summary: "Website design for Freight Tiger.",
     nda: true,
     visuals: [
-      { ratio: "landscape", tone: "#C3C9CF" },
-      { ratio: "landscape", tone: "#B6BDC4" },
-      { ratio: "portrait", tone: "#CDD2D7" },
+      { ratio: "landscape", tone: placeholder },
+      { ratio: "landscape", tone: placeholder },
+      { ratio: "portrait", tone: placeholder },
     ],
   },
   {
@@ -85,9 +89,20 @@ export const projects: Project[] = [
     summary: "Website design and marketing for Cruise Money.",
     nda: true,
     visuals: [
-      { ratio: "landscape", tone: "#E3D7C6" },
-      { ratio: "portrait", tone: "#D9CCB9" },
-      { ratio: "landscape", tone: "#EADFD0" },
+      {
+        ratio: "portrait",
+        tone: placeholder,
+        device: "phone",
+        video: ["/work/cruise-money/sayings.webm", "/work/cruise-money/sayings.mp4"],
+        image: "/work/cruise-money/sayings.jpg",
+      },
+      {
+        ratio: "portrait",
+        tone: placeholder,
+        video: ["/work/cruise-money/hero.webm", "/work/cruise-money/hero.mp4"],
+        image: "/work/cruise-money/hero.jpg",
+      },
+      { ratio: "portrait", tone: placeholder, image: "/work/cruise-money/macbook.webp" },
     ],
   },
   {
@@ -99,9 +114,9 @@ export const projects: Project[] = [
       "Product design and creative direction for Life in Progress, a personal project. Placeholder: one or two sentences on what it is and why you made it.",
     caseStudy: true,
     visuals: [
-      { ratio: "landscape", tone: "#30312F" },
-      { ratio: "portrait", tone: "#1F201E" },
-      { ratio: "landscape", tone: "#3B3C39" },
+      { ratio: "landscape", tone: placeholder },
+      { ratio: "portrait", tone: placeholder },
+      { ratio: "landscape", tone: placeholder },
     ],
   },
 ];
@@ -114,9 +129,9 @@ export const archives: Project[] = [
     context: "Archive",
     summary: "Work for India Art Fair. Placeholder: one line on what this was.",
     visuals: [
-      { ratio: "portrait", tone: "#E6D9C2" },
-      { ratio: "portrait", tone: "#DCCDB2" },
-      { ratio: "square", tone: "#EFE5D4" },
+      { ratio: "portrait", tone: placeholder },
+      { ratio: "portrait", tone: placeholder },
+      { ratio: "square", tone: placeholder },
     ],
   },
   {
@@ -126,9 +141,9 @@ export const archives: Project[] = [
     context: "Archive",
     summary: "Work for Jazz de Montréal. Placeholder: one line on what this was.",
     visuals: [
-      { ratio: "portrait", tone: "#C7CCD6" },
-      { ratio: "square", tone: "#BAC0CC" },
-      { ratio: "portrait", tone: "#D3D7DF" },
+      { ratio: "portrait", tone: placeholder },
+      { ratio: "square", tone: placeholder },
+      { ratio: "portrait", tone: placeholder },
     ],
   },
 ];
