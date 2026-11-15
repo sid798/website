@@ -32,6 +32,8 @@ export type Project = {
   facts?: string[];
   nda?: boolean;
   link?: string;
+  /** A full case study hosted elsewhere. */
+  caseStudyLink?: string;
   caseStudy?: boolean;
   /** The V1 thumbnail, when it should differ from the first visual. */
   cover?: Visual;
@@ -53,6 +55,7 @@ export const projects: Project[] = [
     context: "At Chariot",
     summary: "Website design and marketing for Cruise Money.",
     nda: true,
+    link: "https://www.cruise.money/",
     visuals: [
       {
         ratio: "wide",
@@ -79,6 +82,8 @@ export const projects: Project[] = [
     summary: "Product and website design for Alai.",
     facts: ["Featured on Product Hunt", "YC-backed"],
     nda: true,
+    link: "https://getalai.com/",
+    caseStudyLink: "https://withchariot.com/alai-product-design-uiux",
     visuals: [
       { ratio: "classic", tone: placeholder, image: "/work/alai/mockup.webp" },
       { ratio: "classic", tone: placeholder, image: "/work/alai/website.webp" },
@@ -92,6 +97,7 @@ export const projects: Project[] = [
     context: "At Chariot",
     summary: "Website design for Freight Tiger.",
     nda: true,
+    link: "https://www.freighttiger.com/",
     visuals: [
       { ratio: "wide", tone: "#ffbe06", fit: "inset", image: "/work/freight-tiger/macbook.webp" },
       {
@@ -117,6 +123,7 @@ export const projects: Project[] = [
     context: "At Chariot",
     summary: "Website design for Healthflex by Loop.",
     nda: true,
+    link: "https://healthflex.loophealth.com/",
     cover: { ratio: "classic", tone: "#d4eb17", corner: healthflexHero },
     visuals: [
       { ratio: "classic", tone: "#d4eb17", laptop: healthflexHero },
