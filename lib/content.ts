@@ -64,7 +64,7 @@ export const projects: Project[] = [
       {
         ratio: "wide",
         tone: placeholder,
-        phones: ["sayings", "features", "visualisation"].map((name) => ({
+        phones: ["whatif", "features", "visualisation"].map((name) => ({
           video: [`/work/cruise-money/${name}.webm`, `/work/cruise-money/${name}.mp4`],
           image: `/work/cruise-money/${name}.jpg`,
         })),
@@ -106,8 +106,8 @@ export const projects: Project[] = [
         tone: "#ffffff",
         fit: "inset",
         border: true,
-        video: ["/work/freight-tiger/feature.webm", "/work/freight-tiger/feature.mp4"],
-        image: "/work/freight-tiger/feature.jpg",
+        video: ["/work/freight-tiger/marketplace.webm", "/work/freight-tiger/marketplace.mp4"],
+        image: "/work/freight-tiger/marketplace.jpg",
       },
     ],
   },
