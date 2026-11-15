@@ -13,7 +13,7 @@ function Label({ children }: { children: React.ReactNode }) {
 }
 
 function Card({ project, height }: { project: Project; height: string }) {
-  const cover = project.visuals[0];
+  const cover = project.cover ?? project.visuals[0];
   const frame = (
     <div className={`${height} overflow-hidden rounded-lg ${ratioClass[cover.ratio]}`}>
       <Media

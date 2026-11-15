@@ -93,6 +93,16 @@ export function Media({ visual, className: extra = "" }: { visual: Visual; class
     );
   }
 
+  if (visual.corner) {
+    return (
+      <div className={`relative size-full overflow-hidden ${className}`} style={{ background: visual.tone }}>
+        <div className="absolute left-[8.6%] top-[11.6%] aspect-[1600/996] w-[110%] overflow-hidden rounded-tl-[6px]">
+          <Fill screen={visual.corner} fit="object-cover object-left-top" />
+        </div>
+      </div>
+    );
+  }
+
   if (visual.laptop) {
     return (
       <div className={`flex size-full items-center justify-center ${className}`} style={{ background: visual.tone }}>

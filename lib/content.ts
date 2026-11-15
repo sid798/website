@@ -12,6 +12,8 @@ export type Visual = Screen & {
   phones?: Screen[];
   /** Shows the screen inside a laptop frame, centred on the tone colour. */
   laptop?: Screen;
+  /** Shows the screen set in from the top-left, running off the right and bottom edges. */
+  corner?: Screen;
   /** "contain" shows the whole media on the tone colour; "inset" also pads it off the edges. */
   fit?: "contain" | "inset";
   /** A thin soft-grey outline, for tiles that would otherwise vanish into the page. */
@@ -31,10 +33,17 @@ export type Project = {
   nda?: boolean;
   link?: string;
   caseStudy?: boolean;
+  /** The V1 thumbnail, when it should differ from the first visual. */
+  cover?: Visual;
   visuals: Visual[];
 };
 
 export const ndaNote = "Under NDA. Detailed walkthrough available on request.";
+
+const healthflexHero: Screen = {
+  video: ["/work/healthflex/hero.webm", "/work/healthflex/hero.mp4"],
+  image: "/work/healthflex/hero.jpg",
+};
 
 export const projects: Project[] = [
   {
@@ -58,15 +67,9 @@ export const projects: Project[] = [
     context: "At Chariot",
     summary: "Website design for Healthflex by Loop.",
     nda: true,
+    cover: { ratio: "classic", tone: "#d4eb17", corner: healthflexHero },
     visuals: [
-      {
-        ratio: "classic",
-        tone: "#d4eb17",
-        laptop: {
-          video: ["/work/healthflex/hero.webm", "/work/healthflex/hero.mp4"],
-          image: "/work/healthflex/hero.jpg",
-        },
-      },
+      { ratio: "classic", tone: "#d4eb17", laptop: healthflexHero },
       { ratio: "classic", tone: "#d4eb17", image: "/work/healthflex/slide.webp" },
     ],
   },
