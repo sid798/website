@@ -3,7 +3,7 @@ import { CodeDemo } from "@/components/code-demo";
 import { MarkerTrail } from "@/components/marker-trail";
 import { Media } from "@/components/media";
 import { ProjectMeta } from "@/components/project-meta";
-import { about, archives, connect, experience, intro, projects, ratioClass, type Project } from "@/lib/content";
+import { about, archives, connect, experience, intro, projects, type Project } from "@/lib/content";
 
 const column = "mx-auto w-full max-w-[440px] px-5 lg:mx-0 lg:ml-[33.333%] lg:w-1/3 lg:max-w-none lg:px-3";
 const rowPad = "px-5 scroll-px-5 lg:pl-[calc(33.333%-0.25rem)] lg:pr-3 lg:scroll-pl-[calc(33.333%-0.25rem)]";
@@ -12,10 +12,10 @@ function Label({ children }: { children: React.ReactNode }) {
   return <p className="text-muted">{children}</p>;
 }
 
-function Card({ project, height }: { project: Project; height: string }) {
+function Card({ project }: { project: Project }) {
   const cover = project.cover ?? project.visuals[0];
   const frame = (
-    <div className={`${height} overflow-hidden rounded-lg ${ratioClass[cover.ratio]}`}>
+    <div className="aspect-[4/3] h-[38vh] min-h-[220px] overflow-hidden rounded-lg">
       <Media
         visual={cover}
         className={project.caseStudy ? "transition-transform duration-700 ease-[var(--ease-out)] group-hover:scale-[1.02]" : ""}
@@ -66,7 +66,7 @@ export default function Home() {
         </div>
         <ul className={`no-scrollbar mt-3 flex snap-x snap-proximity items-start gap-2 overflow-x-auto ${rowPad}`}>
           {projects.map((project) => (
-            <Card key={project.slug} project={project} height="h-[38vh] min-h-[220px]" />
+            <Card key={project.slug} project={project} />
           ))}
         </ul>
       </section>
@@ -77,7 +77,7 @@ export default function Home() {
         </div>
         <ul className={`no-scrollbar mt-3 flex snap-x snap-proximity items-start gap-2 overflow-x-auto ${rowPad}`}>
           {archives.map((project) => (
-            <Card key={project.slug} project={project} height="h-[30vh] min-h-[180px]" />
+            <Card key={project.slug} project={project} />
           ))}
         </ul>
       </section>

@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Media } from "@/components/media";
-import { projects, ratioClass } from "@/lib/content";
+import { parked, projects, ratioClass } from "@/lib/content";
 
-const caseStudies = projects.filter((p) => p.caseStudy);
+const caseStudies = [...projects, ...parked].filter((p) => p.caseStudy);
 
 export function generateStaticParams() {
   return caseStudies.map((project) => ({ slug: project.slug }));

@@ -47,6 +47,31 @@ const healthflexHero: Screen = {
 
 export const projects: Project[] = [
   {
+    slug: "cruise-money",
+    name: "Cruise Money",
+    scope: ["Website Design", "Marketing"],
+    context: "At Chariot",
+    summary: "Website design and marketing for Cruise Money.",
+    nda: true,
+    visuals: [
+      {
+        ratio: "wide",
+        tone: placeholder,
+        video: ["/work/cruise-money/hero.webm", "/work/cruise-money/hero.mp4"],
+        image: "/work/cruise-money/hero.jpg",
+      },
+      { ratio: "classic", tone: placeholder, image: "/work/cruise-money/macbook.webp" },
+      {
+        ratio: "wide",
+        tone: placeholder,
+        phones: ["sayings", "features", "visualisation"].map((name) => ({
+          video: [`/work/cruise-money/${name}.webm`, `/work/cruise-money/${name}.mp4`],
+          image: `/work/cruise-money/${name}.jpg`,
+        })),
+      },
+    ],
+  },
+  {
     slug: "alai",
     name: "Alai",
     scope: ["Product Design", "Web Design"],
@@ -55,35 +80,9 @@ export const projects: Project[] = [
     facts: ["Featured on Product Hunt", "YC-backed"],
     nda: true,
     visuals: [
-      { ratio: "landscape", tone: placeholder },
-      { ratio: "landscape", tone: placeholder },
-      { ratio: "portrait", tone: placeholder },
-    ],
-  },
-  {
-    slug: "healthflex",
-    name: "Healthflex by Loop",
-    scope: ["Website Design"],
-    context: "At Chariot",
-    summary: "Website design for Healthflex by Loop.",
-    nda: true,
-    cover: { ratio: "classic", tone: "#d4eb17", corner: healthflexHero },
-    visuals: [
-      { ratio: "classic", tone: "#d4eb17", laptop: healthflexHero },
-      { ratio: "classic", tone: "#d4eb17", image: "/work/healthflex/slide.webp" },
-    ],
-  },
-  {
-    slug: "atlabs",
-    name: "Atlabs",
-    scope: ["Product Design", "Website Design"],
-    context: "At Chariot",
-    summary: "Product and website design for Atlabs.",
-    nda: true,
-    visuals: [
-      { ratio: "landscape", tone: placeholder },
-      { ratio: "square", tone: placeholder },
-      { ratio: "landscape", tone: placeholder },
+      { ratio: "classic", tone: placeholder, image: "/work/alai/mockup.webp" },
+      { ratio: "classic", tone: placeholder, image: "/work/alai/website.webp" },
+      { ratio: "classic", tone: placeholder, image: "/work/alai/editor.webp" },
     ],
   },
   {
@@ -113,30 +112,22 @@ export const projects: Project[] = [
     ],
   },
   {
-    slug: "cruise-money",
-    name: "Cruise Money",
-    scope: ["Website Design", "Marketing"],
+    slug: "healthflex",
+    name: "Healthflex by Loop",
+    scope: ["Website Design"],
     context: "At Chariot",
-    summary: "Website design and marketing for Cruise Money.",
+    summary: "Website design for Healthflex by Loop.",
     nda: true,
+    cover: { ratio: "classic", tone: "#d4eb17", corner: healthflexHero },
     visuals: [
-      {
-        ratio: "wide",
-        tone: placeholder,
-        video: ["/work/cruise-money/hero.webm", "/work/cruise-money/hero.mp4"],
-        image: "/work/cruise-money/hero.jpg",
-      },
-      { ratio: "classic", tone: placeholder, image: "/work/cruise-money/macbook.webp" },
-      {
-        ratio: "wide",
-        tone: placeholder,
-        phones: ["sayings", "features", "visualisation"].map((name) => ({
-          video: [`/work/cruise-money/${name}.webm`, `/work/cruise-money/${name}.mp4`],
-          image: `/work/cruise-money/${name}.jpg`,
-        })),
-      },
+      { ratio: "classic", tone: "#d4eb17", laptop: healthflexHero },
+      { ratio: "classic", tone: "#d4eb17", image: "/work/healthflex/slide.webp" },
     ],
   },
+];
+
+/** Hidden from the lists for now; the case study page still builds from here. */
+export const parked: Project[] = [
   {
     slug: "life-in-progress",
     name: "Life in Progress",
