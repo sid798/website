@@ -4,7 +4,7 @@ import { MarkerTrail } from "@/components/marker-trail";
 import { Media } from "@/components/media";
 import { ProjectMeta } from "@/components/project-meta";
 import { ArchiveLink } from "@/components/archive-link";
-import { about, connect, experience, intro, projects, type Project } from "@/lib/content";
+import { about, connect, experience, projects, type Project } from "@/lib/content";
 
 const column = "mx-auto w-full max-w-[440px] px-5 lg:mx-0 lg:ml-[33.333%] lg:w-1/3 lg:max-w-none lg:px-3";
 const rowPad = "px-5 scroll-px-5 lg:pl-[calc(33.333%-0.25rem)] lg:pr-3 lg:scroll-pl-[calc(33.333%-0.25rem)]";
@@ -55,7 +55,7 @@ export default function Home() {
           <p className="text-muted">Designer</p>
         </div>
         <div className="enter mt-8 space-y-4" style={{ "--i": 1 } as React.CSSProperties}>
-          {intro.map((p) => (
+          {about.map((p) => (
             <p key={p}>{p}</p>
           ))}
         </div>
@@ -73,10 +73,7 @@ export default function Home() {
       </section>
 
       <section aria-label="Archives" className={`${column} mt-24`}>
-        <Label>Archives</Label>
-        <p className="mt-1">
-          <ArchiveLink />
-        </p>
+        <ArchiveLink />
       </section>
 
       <section className={`${column} mt-32`}>
@@ -91,15 +88,6 @@ export default function Home() {
             </li>
           ))}
         </ul>
-      </section>
-
-      <section className={`${column} mt-20`}>
-        <Label>About</Label>
-        <div className="mt-1 space-y-4">
-          {about.map((p) => (
-            <p key={p}>{p}</p>
-          ))}
-        </div>
       </section>
 
       <section className={`${column} mt-20`}>

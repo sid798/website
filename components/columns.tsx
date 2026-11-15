@@ -5,7 +5,7 @@ import { CodeDemo } from "@/components/code-demo";
 import { Media } from "@/components/media";
 import { ProjectMeta } from "@/components/project-meta";
 import { ArchiveLink } from "@/components/archive-link";
-import { about, connect, experience, intro, projects, ratioClass, type Project } from "@/lib/content";
+import { about, connect, experience, projects, ratioClass, type Project } from "@/lib/content";
 
 function Label({ children }: { children: React.ReactNode }) {
   return <p className="text-muted">{children}</p>;
@@ -53,21 +53,13 @@ export function Columns() {
             <p className="text-muted">Designer</p>
           </div>
           <div className="space-y-4">
-            {intro.map((p) => (
+            {about.map((p) => (
               <p key={p}>{p}</p>
             ))}
           </div>
         </div>
 
         <div className="order-3 mt-16 space-y-14 px-5 lg:mt-0 lg:p-0">
-          <div>
-            <Label>About</Label>
-            <div className="mt-1 space-y-4">
-              {about.map((p) => (
-                <p key={p}>{p}</p>
-              ))}
-            </div>
-          </div>
           <div>
             <Label>Experience</Label>
             <ul className="mt-1">
@@ -159,12 +151,9 @@ export function Columns() {
               </ul>
             </div>
           ))}
-          <div>
-            <Label>Archives</Label>
-            <p className="mt-1">
-              <ArchiveLink />
-            </p>
-          </div>
+          <p>
+            <ArchiveLink />
+          </p>
         </div>
 
         <div className="hidden border-t border-line px-3 pb-24 pt-5 lg:block">

@@ -148,11 +148,6 @@ export const archive = {
   href: "https://docs.google.com/presentation/d/e/2PACX-1vQFOt2uZ0_QrkyC8ab-RGUmanFf3YYPzI3IhvuNsLpfkFsZPzhHWDBtluYcpK4gpnumjWFu76T8tmaA/pub?start=false&loop=false&delayms=3000",
 };
 
-export const intro = [
-  "A short paragraph on what you do and how you do it. Placeholder text: two or three sentences about the way you approach work across mediums.",
-  "A second, shorter line about what drives you.",
-];
-
 export const about = [
   "I’ve spent five years designing across advertising, marketing, branding and product, and I’ve never fit neatly into a traditional role. I adapt quickly to whatever the problem needs, and I do my best work when I have room to explore before settling on an answer.",
   "I care about music and environmental conservation. If you’re building something in either, I’d like to talk.",
