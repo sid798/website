@@ -35,13 +35,13 @@ export default async function ProjectPage({ params }: PageProps<"/work/[slug]">)
         <Link href="/" className="text-muted transition-colors hover:text-ink">
           ← Siddharth Thorat
         </Link>
-        <div className="enter mt-12">
+        <div className="enter mt-12 space-y-1">
           <h1>{project.name}</h1>
           <p className="text-muted">
             {project.scope.join(", ")} · {project.context}
           </p>
         </div>
-        <p className="enter mt-8" style={{ "--i": 1 } as React.CSSProperties}>
+        <p className="enter mt-6 max-w-[38ch] leading-[1.55]" style={{ "--i": 1 } as React.CSSProperties}>
           {project.summary}
         </p>
       </section>

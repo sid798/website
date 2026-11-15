@@ -1,11 +1,13 @@
 "use client";
 
 import { useRef, useState } from "react";
-import { CodeDemo } from "@/components/code-demo";
+import { AboutCopy } from "@/components/about-copy";
+import { ConnectList } from "@/components/connect-list";
+import { ProcessBlock } from "@/components/process-block";
 import { Media } from "@/components/media";
 import { ProjectMeta } from "@/components/project-meta";
 import { ArchiveLink } from "@/components/archive-link";
-import { about, connect, experience, projects, ratioClass, type Project } from "@/lib/content";
+import { experience, projects, ratioClass, type Project } from "@/lib/content";
 
 function Label({ children }: { children: React.ReactNode }) {
   return <p className="text-muted">{children}</p>;
@@ -14,13 +16,13 @@ function Label({ children }: { children: React.ReactNode }) {
 function Details({ project }: { project: Project }) {
   return (
     <div className="space-y-4">
-      <div>
+      <div className="space-y-1">
         <p>{project.name}</p>
         <p className="text-muted">
           {project.scope.join(", ")} · {project.context}
         </p>
       </div>
-      <p>{project.summary}</p>
+      <p className="max-w-[38ch] leading-[1.55]">{project.summary}</p>
       <ProjectMeta project={project} />
     </div>
   );
@@ -50,13 +52,8 @@ export function Columns() {
         <div className="order-1 space-y-8 px-5 pt-6 lg:p-0">
           <div className="enter">
             <h1>Siddharth Thorat</h1>
-            <p className="text-muted">Designer</p>
           </div>
-          <div className="space-y-4">
-            {about.map((p) => (
-              <p key={p}>{p}</p>
-            ))}
-          </div>
+          <AboutCopy />
         </div>
 
         <div className="order-3 mt-16 space-y-14 px-5 lg:mt-0 lg:p-0">
@@ -73,19 +70,9 @@ export function Columns() {
               ))}
             </ul>
           </div>
+          <ProcessBlock />
           <div>
-            <Label>Process</Label>
-            <div className="mt-3">
-              <CodeDemo />
-            </div>
-          </div>
-          <div>
-            <Label>Connect</Label>
-            <ul className="mt-1">
-              {connect.map((item) => (
-                <li key={item}>{item}</li>
-              ))}
-            </ul>
+            <ConnectList />
           </div>
         </div>
       </aside>

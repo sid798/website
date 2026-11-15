@@ -1,10 +1,12 @@
 import Link from "next/link";
-import { CodeDemo } from "@/components/code-demo";
+import { AboutCopy } from "@/components/about-copy";
+import { ConnectList } from "@/components/connect-list";
+import { ProcessBlock } from "@/components/process-block";
 import { MarkerTrail } from "@/components/marker-trail";
 import { Media } from "@/components/media";
 import { ProjectMeta } from "@/components/project-meta";
 import { ArchiveLink } from "@/components/archive-link";
-import { about, connect, experience, projects, type Project } from "@/lib/content";
+import { experience, projects, type Project } from "@/lib/content";
 
 const column = "mx-auto w-full max-w-[440px] px-5 lg:mx-0 lg:ml-[33.333%] lg:w-1/3 lg:max-w-none lg:px-3";
 const rowPad = "px-5 scroll-px-5 lg:pl-[calc(33.333%-0.25rem)] lg:pr-3 lg:scroll-pl-[calc(33.333%-0.25rem)]";
@@ -32,8 +34,8 @@ function Card({ project }: { project: Project }) {
       ) : (
         frame
       )}
-      <div className="mt-2 max-w-[340px] space-y-2 px-1.5">
-        <div>
+      <div className="mt-2 max-w-[340px] space-y-3 px-1.5">
+        <div className="space-y-1">
           <p>{project.name}</p>
           <p className="text-muted">
             {project.scope.join(", ")} · {project.context}
@@ -52,13 +54,8 @@ export default function Home() {
       <section className={`${column} pt-[12vh]`}>
         <div className="enter" style={{ "--i": 0 } as React.CSSProperties}>
           <h1>Siddharth Thorat</h1>
-          <p className="text-muted">Designer</p>
         </div>
-        <div className="enter mt-8 space-y-4" style={{ "--i": 1 } as React.CSSProperties}>
-          {about.map((p) => (
-            <p key={p}>{p}</p>
-          ))}
-        </div>
+        <AboutCopy className="enter mt-8 space-y-4" style={{ "--i": 1 } as React.CSSProperties} />
       </section>
 
       <section aria-label="Selected work" className="enter mt-32" style={{ "--i": 2 } as React.CSSProperties}>
@@ -76,6 +73,8 @@ export default function Home() {
         <ArchiveLink />
       </section>
 
+      <ProcessBlock className={`${column} mt-20`} />
+
       <section className={`${column} mt-32`}>
         <Label>Experience</Label>
         <ul className="mt-1">
@@ -91,19 +90,7 @@ export default function Home() {
       </section>
 
       <section className={`${column} mt-20`}>
-        <Label>Process</Label>
-        <div className="mt-3">
-          <CodeDemo />
-        </div>
-      </section>
-
-      <section className={`${column} mt-20`}>
-        <Label>Connect</Label>
-        <ul className="mt-1">
-          {connect.map((item) => (
-            <li key={item}>{item}</li>
-          ))}
-        </ul>
+        <ConnectList />
       </section>
     </main>
   );

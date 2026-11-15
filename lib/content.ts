@@ -151,7 +151,7 @@ export const parked: Project[] = [
 ];
 
 export const archive = {
-  text: "here are my archived works, made over the years",
+  text: "Archived works",
   href: "https://docs.google.com/presentation/d/e/2PACX-1vQFOt2uZ0_QrkyC8ab-RGUmanFf3YYPzI3IhvuNsLpfkFsZPzhHWDBtluYcpK4gpnumjWFu76T8tmaA/pub?start=false&loop=false&delayms=3000",
 };
 
@@ -165,7 +165,13 @@ export const experience = [
   { role: "Freelance Graphic Designer", place: "Independent", years: "2022 — 2024" },
 ];
 
-export const connect = ["Email", "LinkedIn", "Instagram", "Read.cv"];
+/** Set to `true` to show the Process label and code demo on the homepage layouts. */
+export const showProcessSection = false;
+
+export const connectLinks = [
+  { label: "siddharththorat96@gmail.com", href: "mailto:siddharththorat96@gmail.com" },
+  { label: "Instagram", href: "https://www.instagram.com/_siddharth_thorat/" },
+] as const;
 
 export const ratioClass: Record<Visual["ratio"], string> = {
   portrait: "aspect-[4/5]",
