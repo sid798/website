@@ -59,6 +59,21 @@ function Phone({ screen }: { screen: Screen }) {
   );
 }
 
+/** Where the screen sits inside /work/device-laptop.webp (4864 × 2938); the screen there is opaque. */
+const laptopScreen = { left: "10.3%", top: "2.2%", width: "79.4%", height: "87.3%" };
+
+function Laptop({ screen }: { screen: Screen }) {
+  return (
+    <div className="relative aspect-[4864/2938] w-full">
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img className="absolute inset-0 size-full" src="/work/device-laptop.webp" alt="" loading="lazy" />
+      <div className="absolute overflow-hidden" style={laptopScreen}>
+        <Fill screen={screen} />
+      </div>
+    </div>
+  );
+}
+
 /** A project visual: a looping video when one exists, else an image, else a tone block. */
 export function Media({ visual, className: extra = "" }: { visual: Visual; className?: string }) {
   const className = visual.border ? `rounded-[inherit] border border-line ${extra}` : extra;
@@ -74,6 +89,16 @@ export function Media({ visual, className: extra = "" }: { visual: Visual; class
             <Phone screen={screen} />
           </div>
         ))}
+      </div>
+    );
+  }
+
+  if (visual.laptop) {
+    return (
+      <div className={`flex size-full items-center justify-center ${className}`} style={{ background: visual.tone }}>
+        <div className="w-[87%]">
+          <Laptop screen={visual.laptop} />
+        </div>
       </div>
     );
   }

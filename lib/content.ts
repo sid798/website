@@ -10,6 +10,8 @@ export type Visual = Screen & {
   tone: string;
   /** Shows each screen inside a phone frame, side by side on the tone colour. */
   phones?: Screen[];
+  /** Shows the screen inside a laptop frame, centred on the tone colour. */
+  laptop?: Screen;
   /** "contain" shows the whole media on the tone colour; "inset" also pads it off the edges. */
   fit?: "contain" | "inset";
   /** A thin soft-grey outline, for tiles that would otherwise vanish into the page. */
@@ -57,9 +59,15 @@ export const projects: Project[] = [
     summary: "Website design for Healthflex by Loop.",
     nda: true,
     visuals: [
-      { ratio: "landscape", tone: placeholder },
-      { ratio: "landscape", tone: placeholder },
-      { ratio: "square", tone: placeholder },
+      {
+        ratio: "classic",
+        tone: "#d4eb17",
+        laptop: {
+          video: ["/work/healthflex/hero.webm", "/work/healthflex/hero.mp4"],
+          image: "/work/healthflex/hero.jpg",
+        },
+      },
+      { ratio: "classic", tone: "#d4eb17", image: "/work/healthflex/slide.webp" },
     ],
   },
   {
