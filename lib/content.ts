@@ -6,7 +6,7 @@ export type Screen = {
 };
 
 export type Visual = Screen & {
-  ratio: "portrait" | "landscape" | "square" | "wide" | "classic";
+  ratio: "portrait" | "landscape" | "square" | "wide" | "classic" | "banner";
   tone: string;
   /** Shows each screen inside a phone frame, side by side on the tone colour. */
   phones?: Screen[];
@@ -102,9 +102,8 @@ export const projects: Project[] = [
         image: "/work/freight-tiger/tool.jpg",
       },
       {
-        ratio: "wide",
+        ratio: "banner",
         tone: "#ffffff",
-        fit: "inset",
         border: true,
         video: ["/work/freight-tiger/marketplace.webm", "/work/freight-tiger/marketplace.mp4"],
         image: "/work/freight-tiger/marketplace.jpg",
@@ -194,4 +193,5 @@ export const ratioClass: Record<Visual["ratio"], string> = {
   square: "aspect-square",
   wide: "aspect-video",
   classic: "aspect-[4/3]",
+  banner: "aspect-[1404/572]",
 };

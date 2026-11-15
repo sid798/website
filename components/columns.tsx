@@ -163,7 +163,7 @@ export function Columns() {
           ))}
         </div>
 
-        <div className="mt-auto hidden border-t border-line px-3 pb-24 pt-5 lg:block">
+        <div className="hidden border-t border-line px-3 pb-24 pt-5 lg:block">
           <p className="mb-4 text-muted">Project</p>
           <div key={project.slug} className="enter">
             <Details project={project} />
