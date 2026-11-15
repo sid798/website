@@ -3,7 +3,8 @@ import { CodeDemo } from "@/components/code-demo";
 import { MarkerTrail } from "@/components/marker-trail";
 import { Media } from "@/components/media";
 import { ProjectMeta } from "@/components/project-meta";
-import { about, archives, connect, experience, intro, projects, type Project } from "@/lib/content";
+import { ArchiveLink } from "@/components/archive-link";
+import { about, connect, experience, intro, projects, type Project } from "@/lib/content";
 
 const column = "mx-auto w-full max-w-[440px] px-5 lg:mx-0 lg:ml-[33.333%] lg:w-1/3 lg:max-w-none lg:px-3";
 const rowPad = "px-5 scroll-px-5 lg:pl-[calc(33.333%-0.25rem)] lg:pr-3 lg:scroll-pl-[calc(33.333%-0.25rem)]";
@@ -71,15 +72,11 @@ export default function Home() {
         </ul>
       </section>
 
-      <section aria-label="Archives" className="mt-24">
-        <div className={column}>
-          <Label>Archives</Label>
-        </div>
-        <ul className={`no-scrollbar mt-3 flex snap-x snap-proximity items-start gap-2 overflow-x-auto ${rowPad}`}>
-          {archives.map((project) => (
-            <Card key={project.slug} project={project} />
-          ))}
-        </ul>
+      <section aria-label="Archives" className={`${column} mt-24`}>
+        <Label>Archives</Label>
+        <p className="mt-1">
+          <ArchiveLink />
+        </p>
       </section>
 
       <section className={`${column} mt-32`}>

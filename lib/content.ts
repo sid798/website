@@ -143,32 +143,10 @@ export const parked: Project[] = [
   },
 ];
 
-export const archives: Project[] = [
-  {
-    slug: "india-art-fair",
-    name: "India Art Fair",
-    scope: ["Graphic Design"],
-    context: "Archive",
-    summary: "Work for India Art Fair. Placeholder: one line on what this was.",
-    visuals: [
-      { ratio: "portrait", tone: placeholder },
-      { ratio: "portrait", tone: placeholder },
-      { ratio: "square", tone: placeholder },
-    ],
-  },
-  {
-    slug: "jazz-de-montreal",
-    name: "Jazz de Montréal",
-    scope: ["Graphic Design"],
-    context: "Archive",
-    summary: "Work for Jazz de Montréal. Placeholder: one line on what this was.",
-    visuals: [
-      { ratio: "portrait", tone: placeholder },
-      { ratio: "square", tone: placeholder },
-      { ratio: "portrait", tone: placeholder },
-    ],
-  },
-];
+export const archive = {
+  text: "here are my archived works, made over the years",
+  href: "https://docs.google.com/presentation/d/e/2PACX-1vQFOt2uZ0_QrkyC8ab-RGUmanFf3YYPzI3IhvuNsLpfkFsZPzhHWDBtluYcpK4gpnumjWFu76T8tmaA/pub?start=false&loop=false&delayms=3000",
+};
 
 export const intro = [
   "A short paragraph on what you do and how you do it. Placeholder text: two or three sentences about the way you approach work across mediums.",
@@ -176,8 +154,8 @@ export const intro = [
 ];
 
 export const about = [
-  "The longer about. Where you grew up, how you came to design, and why you refuse to stay in one medium. Placeholder text.",
-  "A second paragraph on process: how you use tools like Claude and Cursor to take an idea from sketch to something real, and what you are looking for next.",
+  "I’ve spent five years designing across advertising, marketing, branding and product, and I’ve never fit neatly into a traditional role. I adapt quickly to whatever the problem needs, and I do my best work when I have room to explore before settling on an answer.",
+  "I care about music and environmental conservation. If you’re building something in either, I’d like to talk.",
 ];
 
 export const experience = [

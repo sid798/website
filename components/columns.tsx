@@ -4,7 +4,8 @@ import { useRef, useState } from "react";
 import { CodeDemo } from "@/components/code-demo";
 import { Media } from "@/components/media";
 import { ProjectMeta } from "@/components/project-meta";
-import { about, archives, connect, experience, intro, projects, ratioClass, type Project } from "@/lib/content";
+import { ArchiveLink } from "@/components/archive-link";
+import { about, connect, experience, intro, projects, ratioClass, type Project } from "@/lib/content";
 
 function Label({ children }: { children: React.ReactNode }) {
   return <p className="text-muted">{children}</p>;
@@ -25,11 +26,8 @@ function Details({ project }: { project: Project }) {
   );
 }
 
-const groups = [
-  { label: "Selected Work", items: projects },
-  { label: "Archives", items: archives },
-];
-const all = [...projects, ...archives];
+const groups = [{ label: "Selected Work", items: projects }];
+const all = projects;
 
 const scroll = "lg:h-svh lg:overflow-y-auto no-scrollbar";
 
@@ -161,6 +159,12 @@ export function Columns() {
               </ul>
             </div>
           ))}
+          <div>
+            <Label>Archives</Label>
+            <p className="mt-1">
+              <ArchiveLink />
+            </p>
+          </div>
         </div>
 
         <div className="hidden border-t border-line px-3 pb-24 pt-5 lg:block">

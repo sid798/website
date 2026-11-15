@@ -22,11 +22,25 @@ html {
   color: var(--ink);
 }
 
+/* Fonts under test; the draft switch sets data-font on <html>. */
+:root {
+  --body-font: var(--font-geist-sans), sans-serif;
+  --body-leading: 1.45;
+  --body-tracking: -0.005em;
+}
+
+html[data-font="f2"] {
+  --body-font: var(--font-source-serif), serif;
+  --body-leading: 1.38;
+  --body-tracking: -0.02em;
+}
+
 body {
-  font-family: var(--font-sans), sans-serif;
+  font-family: var(--body-font);
   font-size: 14px;
-  line-height: 1.45;
-  letter-spacing: -0.005em;
+  font-weight: 400;
+  line-height: var(--body-leading);
+  letter-spacing: var(--body-tracking);
 }
 
 ::selection {
