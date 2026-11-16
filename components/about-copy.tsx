@@ -1,9 +1,13 @@
 import type { CSSProperties, ReactNode } from "react";
 import { about } from "@/lib/content";
 
-/** Line break only from the large layout up (≈ full-width desktop column). */
+/** Line break only from the large layout up (left column in the three-column grid). */
 function DesktopBr() {
   return <br className="hidden lg:block" />;
+}
+
+function tie(words: string) {
+  return words.replace(/ ([^ ]+)$/g, "\u00a0$1");
 }
 
 function AboutParagraphOne({ text }: { text: string }) {
@@ -15,8 +19,10 @@ function AboutParagraphOne({ text }: { text: string }) {
 
   const head = text.slice(0, at + breakAfter.length);
   const tail = text.slice(at + breakAfter.length);
-  const settleAt = tail.indexOf(" before settling on an answer.");
-  if (settleAt === -1) {
+  const closing = "before settling on an answer.";
+  const closingAt = tail.indexOf(closing);
+
+  if (closingAt === -1) {
     return (
       <p className="text-muted lg:text-pretty">
         {head}
@@ -26,16 +32,14 @@ function AboutParagraphOne({ text }: { text: string }) {
     );
   }
 
-  const mid = tail.slice(0, settleAt);
-  const end = tail.slice(settleAt + 1);
+  const explore = tail.slice(0, closingAt).trimEnd();
 
   return (
     <p className="text-muted lg:text-pretty">
       {head}
       <DesktopBr />
-      {mid}
-      <DesktopBr />
-      {end}
+      {explore}{" "}
+      <span className="lg:whitespace-nowrap">{closing}</span>
     </p>
   );
 }
@@ -47,13 +51,12 @@ function AboutParagraphTwo({ text }: { text: string }) {
   }
 
   const head = text.slice(0, at + 1);
-  const tail = text.slice(at + 2);
+  const tail = tie(text.slice(at + 2).replace(/^If /, "If\u00a0"));
 
   return (
     <p className="text-muted lg:text-pretty">
-      {head}
-      <DesktopBr />
-      {tail}
+      {head}{" "}
+      <span className="lg:block">{tail}</span>
     </p>
   );
 }
