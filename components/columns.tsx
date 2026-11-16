@@ -8,6 +8,7 @@ import { Media } from "@/components/media";
 import { ProjectLinks } from "@/components/project-meta";
 import { ProjectSummary } from "@/components/project-summary";
 import { ArchiveLink } from "@/components/archive-link";
+import { ActionLink } from "@/components/action-link";
 import { experience, ndaNote, projects, ratioClass, type Project } from "@/lib/content";
 
 function Label({ children }: { children: React.ReactNode }) {
@@ -23,18 +24,32 @@ function Details({ project }: { project: Project }) {
   return (
     <div className="space-y-8">
       <div className="space-y-2">
-        <div className="flex flex-wrap items-center gap-x-3">
-          <p>{project.name}</p>
-          {project.link || project.caseStudyLink ? (
-            <>
-              <span aria-hidden className="text-faint">
-                |
-              </span>
-              <ProjectLinks project={project} tone="soft" />
-            </>
-          ) : null}
+        <div className="space-y-1">
+          <div className="flex flex-wrap items-center gap-x-3">
+            <p>{project.name}</p>
+            {project.link || project.caseStudyLink ? (
+              <>
+                <span aria-hidden className="text-faint">
+                  |
+                </span>
+                <ProjectLinks project={project} tone="soft" />
+              </>
+            ) : null}
+          </div>
+          <p className="text-muted">
+            {project.scope.join(", ")} · {project.context}
+          </p>
         </div>
-        {project.blurb ? <p className="text-muted">{project.blurb}</p> : null}
+        {project.blurb ? <p className="text-soft">{project.blurb}</p> : null}
+        {project.outcome ? (
+          <p>
+            {project.outcome.href ? (
+              <ActionLink href={project.outcome.href}>{project.outcome.text}</ActionLink>
+            ) : (
+              project.outcome.text
+            )}
+          </p>
+        ) : null}
       </div>
       <ProjectSummary project={project} className="leading-[23.2px]" />
       {project.nda ? <p className="text-soft">{ndaNote}</p> : null}

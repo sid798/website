@@ -27,6 +27,8 @@ export type Project = {
   summaryLinks?: { text: string; href: string }[];
   /** One line under the project name in the details panel. */
   blurb?: string;
+  /** Result line shown under the blurb. */
+  outcome?: { text: string; href?: string };
   facts?: string[];
   nda?: boolean;
   link?: string;
@@ -57,10 +59,11 @@ export const projects: Project[] = [
     context: "At Chariot",
     blurb: "Worked directly with the founders and engineers to design the product and website.",
     summary:
-      "Alai is a Y Combinator-backed AI tool for creating polished presentations quickly. The work spanned the website and the product experience, including how agentic editing sits alongside traditional manual control, that lets users get the speed of AI without losing authorship. Alai launched on Product Hunt as #2 Product of the Day.",
-    summaryLinks: [
-      { text: "Product Hunt as #2 Product of the Day", href: "https://www.producthunt.com/products/alai" },
-    ],
+      "Alai is a Y Combinator-backed AI tool for creating polished presentations quickly. The work spanned the website and the product experience, including how agentic editing sits alongside traditional manual control, that lets users get the speed of AI without losing authorship.",
+    outcome: {
+      text: "#2 Product of the Day on Product Hunt",
+      href: "https://www.producthunt.com/products/alai",
+    },
     link: "https://getalai.com/",
     caseStudyLink: "https://withchariot.com/alai-product-design-uiux",
     caseStudyLinkLabel: "View full case study",
@@ -150,8 +153,8 @@ export const archive = {
 };
 
 export const about = [
-  "I’ve spent five years designing brand, web and product for startups across fintech, logistics, health and AI, and I’ve never fit neatly into a traditional role. I adapt quickly to whatever the problem needs, and I do my best work when I have room to explore before settling on an answer.",
-  "Outside work: music and environmental conservation. Open to projects in either.",
+  "I’ve spent five years designing across advertising, marketing, branding, and product, and I’ve never fit neatly into a traditional role. I adapt quickly to whatever the problem needs, and I do my best work when I have room to explore before settling on an answer.",
+  "I care about music and environmental conservation, and I want my work to end up there. If you’re building something in either, I’d like to talk.",
 ];
 
 export const experience = [
