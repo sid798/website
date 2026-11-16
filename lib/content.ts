@@ -87,7 +87,6 @@ export const projects: Project[] = [
     summaryLinks: [
       { text: "Product Hunt as #2 Product of the Day", href: "https://www.producthunt.com/products/alai" },
     ],
-    nda: true,
     link: "https://getalai.com/",
     caseStudyLink: "https://withchariot.com/alai-product-design-uiux",
     visuals: [
