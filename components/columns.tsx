@@ -6,6 +6,7 @@ import { ConnectList } from "@/components/connect-list";
 import { ProcessBlock } from "@/components/process-block";
 import { Media } from "@/components/media";
 import { ProjectMeta } from "@/components/project-meta";
+import { ProjectSummary } from "@/components/project-summary";
 import { ArchiveLink } from "@/components/archive-link";
 import { experience, projects, ratioClass, type Project } from "@/lib/content";
 
@@ -22,7 +23,7 @@ function Details({ project }: { project: Project }) {
           {project.scope.join(", ")} · {project.context}
         </p>
       </div>
-      <p className="max-w-[38ch] leading-[1.55]">{project.summary}</p>
+      <ProjectSummary project={project} className="max-w-[38ch] leading-[1.55]" />
       <ProjectMeta project={project} />
     </div>
   );

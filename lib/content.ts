@@ -29,6 +29,8 @@ export type Project = {
   context: string;
   year?: string;
   summary: string;
+  /** Phrases in `summary` to turn into outbound links. */
+  summaryLinks?: { text: string; href: string }[];
   facts?: string[];
   nda?: boolean;
   link?: string;
@@ -53,7 +55,8 @@ export const projects: Project[] = [
     name: "Cruise Money",
     scope: ["Website Design", "Marketing"],
     context: "At Chariot",
-    summary: "Website design and marketing for Cruise Money.",
+    summary:
+      "Cruise is an AI money companion for India’s affluent professionals, helping them manage investments and plan their finances through conversation. Launching as a new company, it needed everything from the ground up: identity, logo, website, and marketing. The brand is positioned around people who want their money to support the lifestyle they’re working toward, with each touchpoint designed to win its first users.",
     nda: true,
     link: "https://www.cruise.money/",
     visuals: [
@@ -79,8 +82,11 @@ export const projects: Project[] = [
     name: "Alai",
     scope: ["Product Design", "Web Design"],
     context: "At Chariot",
-    summary: "Product and website design for Alai.",
-    facts: ["Featured on Product Hunt", "YC-backed"],
+    summary:
+      "Alai is a Y Combinator-backed AI tool for creating polished presentations quickly. The work spanned the website and the product experience, including how agentic editing sits alongside traditional manual control, that lets users get the speed of AI without losing authorship. Alai launched on Product Hunt as #2 Product of the Day.",
+    summaryLinks: [
+      { text: "Product Hunt as #2 Product of the Day", href: "https://www.producthunt.com/products/alai" },
+    ],
     nda: true,
     link: "https://getalai.com/",
     caseStudyLink: "https://withchariot.com/alai-product-design-uiux",
@@ -95,7 +101,8 @@ export const projects: Project[] = [
     name: "Freight Tiger",
     scope: ["Website Design"],
     context: "At Chariot",
-    summary: "Website design for Freight Tiger.",
+    summary:
+      "Freight Tiger is a logistics platform that helps businesses manage freight and transportation. The engagement covered a redesign of the brand language and website, replacing a dense, utilitarian look with a clear, consistent visual system that makes a complex product easier to understand.",
     nda: true,
     link: "https://www.freighttiger.com/",
     visuals: [
@@ -121,7 +128,8 @@ export const projects: Project[] = [
     name: "Healthflex by Loop",
     scope: ["Website Design"],
     context: "At Chariot",
-    summary: "Website design for Healthflex by Loop.",
+    summary:
+      "Healthflex is a flexible health benefits product from Loop, which provides health insurance and benefits for employers. As a new offering with no existing site or visual direction, it called for a website designed from scratch. The result is an identity that stands on its own while remaining part of the Loop family.",
     nda: true,
     link: "https://healthflex.loophealth.com/",
     cover: { ratio: "classic", tone: "#d4eb17", corner: healthflexHero },
