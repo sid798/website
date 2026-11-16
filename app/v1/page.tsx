@@ -1,11 +1,11 @@
-import { AboutCopy } from "@/components/about-copy";
+import { SiteIntro } from "@/components/site-intro";
 import { ConnectList } from "@/components/connect-list";
 import { ProcessBlock } from "@/components/process-block";
 import { MarkerTrail } from "@/components/marker-trail";
 import { Media } from "@/components/media";
 import { ProjectMeta } from "@/components/project-meta";
 import { ArchiveLink } from "@/components/archive-link";
-import { experience, projects, type Project } from "@/lib/content";
+import { experience, outsideWork, projects, type Project } from "@/lib/content";
 
 const column = "mx-auto w-full max-w-[440px] px-5 lg:mx-0 lg:ml-[33.333%] lg:w-1/3 lg:max-w-none lg:px-3";
 const rowPad = "px-5 scroll-px-5 lg:pl-[calc(33.333%-0.25rem)] lg:pr-3 lg:scroll-pl-[calc(33.333%-0.25rem)]";
@@ -43,10 +43,10 @@ export default function V1() {
     <main className="pb-40">
       <MarkerTrail />
       <section className={`${column} pt-[12vh]`}>
-        <div className="enter" style={{ "--i": 0 } as React.CSSProperties}>
-          <h1>Siddharth Thorat</h1>
-        </div>
-        <AboutCopy className="enter mt-8 space-y-4" style={{ "--i": 1 } as React.CSSProperties} />
+        <SiteIntro
+          aboutClassName="enter space-y-4"
+          aboutStyle={{ "--i": 1 } as React.CSSProperties}
+        />
       </section>
 
       <section aria-label="Selected work" className="enter mt-32" style={{ "--i": 2 } as React.CSSProperties}>
@@ -78,6 +78,7 @@ export default function V1() {
             </li>
           ))}
         </ul>
+        <p className="mt-4 text-muted">{outsideWork}</p>
       </section>
 
       <section className={`${column} mt-20`}>

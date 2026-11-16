@@ -8,15 +8,10 @@ export type Screen = {
 export type Visual = Screen & {
   ratio: "portrait" | "landscape" | "square" | "wide" | "classic" | "banner";
   tone: string;
-  /** Shows each screen inside a phone frame, side by side on the tone colour. */
   phones?: Screen[];
-  /** Shows the screen inside a laptop frame, centred on the tone colour. */
   laptop?: Screen;
-  /** Shows the screen set in from the top-left, running off the right and bottom edges. */
   corner?: Screen;
-  /** "contain" shows the whole media on the tone colour; "inset" also pads it off the edges. */
   fit?: "contain" | "inset";
-  /** A thin soft-grey outline, for tiles that would otherwise vanish into the page. */
   border?: boolean;
 };
 
@@ -29,20 +24,29 @@ export type Project = {
   context: string;
   year?: string;
   summary: string;
-  /** Phrases in `summary` to turn into outbound links. */
   summaryLinks?: { text: string; href: string }[];
+  /** Shown in the project panel above the NDA note. */
+  role?: string;
+  outcome?: string;
   facts?: string[];
   nda?: boolean;
   link?: string;
-  /** A full case study hosted elsewhere. */
   caseStudyLink?: string;
+  caseStudyLinkLabel?: string;
   caseStudy?: boolean;
-  /** The V1 thumbnail, when it should differ from the first visual. */
   cover?: Visual;
   visuals: Visual[];
 };
 
-export const ndaNote = "Under NDA. Detailed walkthrough available on request.";
+/** Replace `#` when the case study URL is ready. */
+export const pendingHref = "#";
+
+export const walkthroughHref =
+  "mailto:siddharththorat96@gmail.com?subject=Portfolio%20walkthrough%20request";
+
+export const ndaPrefix = "Under NDA. ";
+
+export const headline = "Brand and product designer.";
 
 const healthflexHero: Screen = {
   video: ["/work/healthflex/hero.webm", "/work/healthflex/hero.mp4"],
@@ -51,10 +55,33 @@ const healthflexHero: Screen = {
 
 export const projects: Project[] = [
   {
+    slug: "alai",
+    name: "Alai",
+    scope: ["Website", "Product Design"],
+    context: "At Chariot",
+    role: "[ROLE]",
+    outcome: "[OUTCOME]",
+    summary:
+      "Alai is a Y Combinator-backed AI tool for creating polished presentations quickly. The work spanned the website and the product experience, including how agentic editing sits alongside traditional manual control, that lets users get the speed of AI without losing authorship. Alai launched on Product Hunt as #2 Product of the Day.",
+    summaryLinks: [
+      { text: "Product Hunt as #2 Product of the Day", href: "https://www.producthunt.com/products/alai" },
+    ],
+    link: "https://getalai.com/",
+    caseStudyLink: "https://withchariot.com/alai-product-design-uiux",
+    caseStudyLinkLabel: "View full case study",
+    visuals: [
+      { ratio: "classic", tone: placeholder, image: "/work/alai/mockup.webp" },
+      { ratio: "classic", tone: placeholder, image: "/work/alai/website.webp" },
+      { ratio: "classic", tone: placeholder, image: "/work/alai/editor.webp" },
+    ],
+  },
+  {
     slug: "cruise-money",
     name: "Cruise Money",
     scope: ["Branding", "Website", "Marketing"],
     context: "At Chariot",
+    role: "[ROLE]",
+    outcome: "[OUTCOME]",
     summary:
       "Cruise is an AI money companion for India’s affluent professionals, helping them manage investments and plan their finances through conversation. Launching as a new company, it needed everything from the ground up: identity, logo, website, and marketing. The brand is positioned around people who want their money to support the lifestyle they’re working toward, with each touchpoint designed to win its first users.",
     nda: true,
@@ -78,21 +105,20 @@ export const projects: Project[] = [
     ],
   },
   {
-    slug: "alai",
-    name: "Alai",
-    scope: ["Website", "Product Design"],
+    slug: "healthflex",
+    name: "Healthflex by Loop",
+    scope: ["Branding", "Website"],
     context: "At Chariot",
+    role: "[ROLE]",
+    outcome: "[OUTCOME]",
     summary:
-      "Alai is a Y Combinator-backed AI tool for creating polished presentations quickly. The work spanned the website and the product experience, including how agentic editing sits alongside traditional manual control, that lets users get the speed of AI without losing authorship. Alai launched on Product Hunt as #2 Product of the Day.",
-    summaryLinks: [
-      { text: "Product Hunt as #2 Product of the Day", href: "https://www.producthunt.com/products/alai" },
-    ],
-    link: "https://getalai.com/",
-    caseStudyLink: "https://withchariot.com/alai-product-design-uiux",
+      "Healthflex is a flexible health benefits product from Loop, which provides health insurance and benefits for employers. As a new offering with no existing site or visual direction, it called for a website designed from scratch. The result is an identity that stands on its own while remaining part of the Loop family.",
+    nda: true,
+    link: "https://healthflex.loophealth.com/",
+    cover: { ratio: "classic", tone: "#d4eb17", corner: healthflexHero },
     visuals: [
-      { ratio: "classic", tone: placeholder, image: "/work/alai/mockup.webp" },
-      { ratio: "classic", tone: placeholder, image: "/work/alai/website.webp" },
-      { ratio: "classic", tone: placeholder, image: "/work/alai/editor.webp" },
+      { ratio: "classic", tone: "#d4eb17", laptop: healthflexHero },
+      { ratio: "classic", tone: "#d4eb17", image: "/work/healthflex/slide.webp" },
     ],
   },
   {
@@ -100,6 +126,8 @@ export const projects: Project[] = [
     name: "Freight Tiger",
     scope: ["Branding", "Website"],
     context: "At Chariot",
+    role: "[ROLE]",
+    outcome: "[OUTCOME]",
     summary:
       "Freight Tiger is a logistics platform that helps businesses manage freight and transportation. The engagement covered a redesign of the brand language and website, replacing a dense, utilitarian look with a clear, consistent visual system that makes a complex product easier to understand.",
     nda: true,
@@ -122,44 +150,30 @@ export const projects: Project[] = [
       },
     ],
   },
-  {
-    slug: "healthflex",
-    name: "Healthflex by Loop",
-    scope: ["Branding", "Website"],
-    context: "At Chariot",
-    summary:
-      "Healthflex is a flexible health benefits product from Loop, which provides health insurance and benefits for employers. As a new offering with no existing site or visual direction, it called for a website designed from scratch. The result is an identity that stands on its own while remaining part of the Loop family.",
-    nda: true,
-    link: "https://healthflex.loophealth.com/",
-    cover: { ratio: "classic", tone: "#d4eb17", corner: healthflexHero },
-    visuals: [
-      { ratio: "classic", tone: "#d4eb17", laptop: healthflexHero },
-      { ratio: "classic", tone: "#d4eb17", image: "/work/healthflex/slide.webp" },
-    ],
-  },
 ];
 
 export const archive = {
-  text: "Archived works",
+  text: "Earlier work",
   href: "https://docs.google.com/presentation/d/e/2PACX-1vQFOt2uZ0_QrkyC8ab-RGUmanFf3YYPzI3IhvuNsLpfkFsZPzhHWDBtluYcpK4gpnumjWFu76T8tmaA/pub?start=false&loop=false&delayms=3000",
 };
 
-export const about = [
-  "I’ve spent five years designing across advertising, marketing, branding and product, and I’ve never fit neatly into a traditional role. I adapt quickly to whatever the problem needs, and I do my best work when I have room to explore before settling on an answer.",
-  "I care about music and environmental conservation. If you’re building something in either, I’d like to talk.",
-];
+export const about =
+  "I’ve spent five years designing brand, web and product for startups across fintech, logistics, health and AI, and I’ve never fit neatly into a traditional role. I adapt quickly to whatever the problem needs, and I do my best work when I have room to explore before settling on an answer.";
+
+export const outsideWork =
+  "Outside work: music and environmental conservation. Open to projects in either.";
 
 export const experience = [
   { role: "Product Designer", place: "Chariot", years: "2024 — 2026" },
   { role: "Freelance Graphic Designer", place: "Independent", years: "2021 — 2024" },
 ];
 
-/** Set to `true` to show the Process label and code demo on the homepage layouts. */
 export const showProcessSection = false;
 
 export const connectLinks = [
   { label: "siddharththorat96@gmail.com", href: "mailto:siddharththorat96@gmail.com" },
   { label: "Instagram", href: "https://www.instagram.com/_siddharth_thorat/" },
+  { label: "Resume (PDF)", href: "/resume.pdf" },
 ] as const;
 
 export const ratioClass: Record<Visual["ratio"], string> = {

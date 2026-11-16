@@ -3,7 +3,7 @@
 :root {
   --paper: #ffffff;
   --ink: #111111;
-  --muted: #9a9a9a;
+  --muted: #6b6b6b;
   --line: #ececec;
   --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
 }
@@ -24,7 +24,7 @@ html {
 
 body {
   font-family: var(--font-geist-sans), sans-serif;
-  font-size: 14px;
+  font-size: 15px;
   font-weight: 400;
   line-height: 1.45;
   letter-spacing: -0.005em;

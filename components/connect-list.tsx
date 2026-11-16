@@ -8,7 +8,13 @@ export function ConnectList() {
     <ul className="space-y-1">
       {connectLinks.map((item) => (
         <li key={item.href}>
-          <a href={item.href} className={linkClass} {...(item.href.startsWith("http") ? { target: "_blank", rel: "noopener noreferrer" } : {})}>
+          <a
+            href={item.href}
+            className={linkClass}
+            {...(item.href.startsWith("http") || item.href.endsWith(".pdf")
+              ? { target: "_blank", rel: "noopener noreferrer" }
+              : {})}
+          >
             {item.label}
           </a>
         </li>
