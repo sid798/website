@@ -1,37 +1,38 @@
 import { ActionLink } from "@/components/action-link";
 import { ndaNote, pendingHref, type Project } from "@/lib/content";
 
-/** Role, outcome, NDA note and outbound links shared by both layouts. */
-export function ProjectMeta({ project }: { project: Project }) {
-  const hasCaseStudy = Boolean(
-    project.caseStudyLink && project.caseStudyLink !== pendingHref,
-  );
-  const hasLinks = project.link || hasCaseStudy;
+function hasCaseStudy(project: Project) {
+  return Boolean(project.caseStudyLink && project.caseStudyLink !== pendingHref);
+}
 
+/** Outbound links for a project, inline. */
+export function ProjectLinks({ project, tone }: { project: Project; tone?: "ink" | "soft" }) {
+  if (!project.link && !hasCaseStudy(project)) return null;
+  return (
+    <span className="inline-flex flex-wrap gap-x-3">
+      {project.link ? (
+        <ActionLink href={project.link} tone={tone}>
+          View site
+        </ActionLink>
+      ) : null}
+      {hasCaseStudy(project) && project.caseStudyLink ? (
+        <ActionLink href={project.caseStudyLink} tone={tone}>
+          {project.caseStudyLinkLabel ?? "View case study"}
+        </ActionLink>
+      ) : null}
+    </span>
+  );
+}
+
+/** NDA note and outbound links, stacked. */
+export function ProjectMeta({ project }: { project: Project }) {
+  const links = project.link || hasCaseStudy(project);
   return (
     <div className="space-y-4">
-      {project.facts?.length ? <p className="text-muted">{project.facts.join(" · ")}</p> : null}
-      {project.role ? (
+      {project.nda ? <p className="text-soft">{ndaNote}</p> : null}
+      {links ? (
         <p>
-          <span className="text-muted">Role · </span>
-          {project.role}
-        </p>
-      ) : null}
-      {project.outcome ? (
-        <p>
-          <span className="text-muted">Outcome · </span>
-          {project.outcome}
-        </p>
-      ) : null}
-      {project.nda ? <p className="text-muted">{ndaNote}</p> : null}
-      {hasLinks ? (
-        <p className="flex flex-wrap gap-x-4 gap-y-1">
-          {hasCaseStudy && project.caseStudyLink ? (
-            <ActionLink href={project.caseStudyLink}>
-              {project.caseStudyLinkLabel ?? "View case study"}
-            </ActionLink>
-          ) : null}
-          {project.link ? <ActionLink href={project.link}>View site</ActionLink> : null}
+          <ProjectLinks project={project} />
         </p>
       ) : null}
     </div>

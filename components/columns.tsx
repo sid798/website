@@ -5,26 +5,39 @@ import { SiteIntro } from "@/components/site-intro";
 import { ConnectList } from "@/components/connect-list";
 import { ProcessBlock } from "@/components/process-block";
 import { Media } from "@/components/media";
-import { ProjectMeta } from "@/components/project-meta";
+import { ProjectLinks } from "@/components/project-meta";
 import { ProjectSummary } from "@/components/project-summary";
 import { ArchiveLink } from "@/components/archive-link";
-import { experience, projects, ratioClass, type Project } from "@/lib/content";
+import { experience, ndaNote, projects, ratioClass, type Project } from "@/lib/content";
 
 function Label({ children }: { children: React.ReactNode }) {
   return <p className="text-muted">{children}</p>;
 }
 
+/** Full-bleed rule across a side column on desktop. */
+function Rule() {
+  return <div aria-hidden className="hidden h-px bg-line lg:-mx-3 lg:block" />;
+}
+
 function Details({ project }: { project: Project }) {
   return (
-    <div className="space-y-4">
-      <div className="space-y-1">
-        <p>{project.name}</p>
-        <p className="text-muted">
-          {project.scope.join(", ")} · {project.context}
-        </p>
+    <div className="space-y-8">
+      <div className="space-y-2">
+        <div className="flex flex-wrap items-center gap-x-3">
+          <p>{project.name}</p>
+          {project.link || project.caseStudyLink ? (
+            <>
+              <span aria-hidden className="text-faint">
+                |
+              </span>
+              <ProjectLinks project={project} tone="soft" />
+            </>
+          ) : null}
+        </div>
+        {project.blurb ? <p className="text-muted">{project.blurb}</p> : null}
       </div>
-      <ProjectSummary project={project} className="max-w-[38ch] leading-[1.55]" />
-      <ProjectMeta project={project} />
+      <ProjectSummary project={project} className="leading-[23.2px]" />
+      {project.nda ? <p className="text-soft">{ndaNote}</p> : null}
     </div>
   );
 }
@@ -49,28 +62,29 @@ export function Columns() {
   return (
     <main className="flex min-w-0 flex-col overflow-x-hidden pb-24 lg:grid lg:h-svh lg:grid-cols-[1fr_2fr_1fr] lg:overflow-hidden lg:pb-0">
       {/* On phones this column dissolves so its parts can sit before and after the work list. */}
-      <aside className={`contents lg:block lg:space-y-14 lg:px-3 lg:pb-24 lg:pt-6 ${scroll}`}>
+      <aside className={`contents lg:block lg:space-y-12 lg:px-3 lg:pb-24 lg:pt-6 ${scroll}`}>
         <div className="order-1 min-w-0 px-5 pt-6 lg:p-0">
           <SiteIntro />
         </div>
 
-        <div className="order-3 mt-16 space-y-14 px-5 lg:mt-0 lg:p-0">
+        <Rule />
+
+        <div className="order-3 mt-16 space-y-12 px-5 lg:mt-0 lg:p-0">
           <div>
             <Label>Experience</Label>
-            <ul className="mt-1">
+            <ul className="mt-2">
               {experience.map((item) => (
-                <li key={item.role} className="flex justify-between gap-4">
-                  <span>
+                <li key={item.role} className="flex items-start justify-between gap-4">
+                  <span className="max-w-[200px]">
                     {item.role}, {item.place}
                   </span>
                   <span className="shrink-0 tabular-nums text-muted">{item.years}</span>
                 </li>
               ))}
-            </ul>          </div>
-          <ProcessBlock />
-          <div>
-            <ConnectList />
+            </ul>
           </div>
+          <ProcessBlock />
+          <ConnectList />
         </div>
       </aside>
 
@@ -79,7 +93,7 @@ export function Columns() {
         className={`hidden border-x border-line px-3 pb-6 pt-6 lg:block ${scroll}`}
         aria-label={`${project.name} visuals`}
       >
-        <div key={project.slug} className="enter space-y-2">
+        <div key={project.slug} className="enter space-y-3">
           {project.visuals.map((visual, i) => (
             <div key={i} className={`w-full overflow-hidden rounded-lg ${ratioClass[visual.ratio]}`}>
               <Media visual={visual} />
@@ -88,12 +102,12 @@ export function Columns() {
         </div>
       </div>
 
-      <section className={`order-2 mt-16 min-w-0 lg:mt-0 lg:flex lg:flex-col ${scroll}`}>
-        <div className="min-w-0 space-y-10 px-5 lg:px-3 lg:pb-10 lg:pt-6">
+      <section className={`order-2 mt-16 min-w-0 lg:mt-0 ${scroll}`}>
+        <div className="min-w-0 space-y-12 px-5 lg:px-3 lg:pb-12 lg:pt-6">
           {groups.map((group) => (
             <div key={group.label}>
               <Label>{group.label}</Label>
-              <ul className="mt-1 divide-y divide-line border-y border-line lg:divide-y-0 lg:border-0">
+              <ul className="mt-2 divide-y divide-line border-y border-line lg:divide-y-0 lg:border-0">
                 {group.items.map((p) => {
                   const isActive = p.slug === active;
                   const isOpen = p.slug === open;
@@ -105,20 +119,20 @@ export function Columns() {
                         aria-pressed={isActive}
                         aria-expanded={isOpen}
                         className={`flex w-full justify-between gap-4 py-2.5 text-left transition-colors duration-200 lg:py-0 ${
-                          isActive ? "lg:text-ink" : "lg:text-muted lg:hover:text-ink"
+                          isActive ? "lg:text-ink" : "lg:text-soft lg:hover:text-ink"
                         }`}
                       >
                         <span className="min-w-0 shrink break-words">{p.name}</span>
-                        <span className="shrink-0 text-right text-muted">
-                          <span className="hidden max-w-[11rem] text-pretty lg:inline">
+                        <span className="shrink-0 text-right">
+                          <span className="hidden max-w-[208px] text-pretty lg:inline-block">
                             {p.scope.join(", ")}
                           </span>
-                          <span className="lg:hidden">{isOpen ? "−" : "+"}</span>
+                          <span className="text-muted lg:hidden">{isOpen ? "−" : "+"}</span>
                         </span>
                       </button>
                       {isOpen ? (
-                        <div className="enter space-y-4 pb-6 pt-1 lg:hidden">
-                          <ul className="no-scrollbar -mx-5 flex snap-x gap-2 overflow-x-auto px-5 scroll-px-5">
+                        <div className="enter space-y-6 pb-6 pt-1 lg:hidden">
+                          <ul className="no-scrollbar -mx-5 flex snap-x gap-3 overflow-x-auto px-5 scroll-px-5">
                             {p.visuals.map((visual, i) => (
                               <li
                                 key={i}
@@ -142,8 +156,7 @@ export function Columns() {
           </p>
         </div>
 
-        <div className="hidden border-t border-line px-3 pb-24 pt-5 lg:block">
-          <p className="mb-4 text-muted">Project</p>
+        <div className="hidden border-t border-line px-3 pb-24 pt-12 lg:block">
           <div key={project.slug} className="enter">
             <Details project={project} />
           </div>

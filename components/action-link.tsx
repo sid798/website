@@ -1,5 +1,5 @@
 const label =
-  "underline decoration-ink/30 underline-offset-[3px] transition-[text-decoration-color] duration-200 group-hover:decoration-ink";
+  "underline decoration-faint underline-offset-[3px] transition-[text-decoration-color] duration-200 group-hover:decoration-current";
 
 function ExternalArrow() {
   return (
@@ -23,13 +23,23 @@ function ExternalArrow() {
 }
 
 /** Outbound text link; underline stops before the arrow (not an icon font — inline SVG). */
-export function ActionLink({ href, children }: { href: string; children: string }) {
+export function ActionLink({
+  href,
+  children,
+  tone = "ink",
+}: {
+  href: string;
+  children: string;
+  tone?: "ink" | "soft";
+}) {
+  const color =
+    tone === "soft" ? "text-soft transition-colors duration-200 hover:text-ink" : "text-ink";
   return (
     <a
       href={href}
       target="_blank"
       rel="noopener noreferrer"
-      className="group inline-flex items-center gap-1 text-ink"
+      className={`group inline-flex items-center gap-1 ${color}`}
     >
       <span className={label}>{children}</span>
       <ExternalArrow />
