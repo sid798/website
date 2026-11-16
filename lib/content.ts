@@ -41,10 +41,7 @@ export type Project = {
 /** Replace `#` when the case study URL is ready. */
 export const pendingHref = "#";
 
-export const walkthroughHref =
-  "mailto:siddharththorat96@gmail.com?subject=Portfolio%20walkthrough%20request";
-
-export const ndaPrefix = "Under NDA. ";
+export const ndaNote = "Under NDA. Detailed walkthrough available on request.";
 
 export const headline = "Brand and product designer.";
 
@@ -157,11 +154,10 @@ export const archive = {
   href: "https://docs.google.com/presentation/d/e/2PACX-1vQFOt2uZ0_QrkyC8ab-RGUmanFf3YYPzI3IhvuNsLpfkFsZPzhHWDBtluYcpK4gpnumjWFu76T8tmaA/pub?start=false&loop=false&delayms=3000",
 };
 
-export const about =
-  "I’ve spent five years designing brand, web and product for startups across fintech, logistics, health and AI, and I’ve never fit neatly into a traditional role. I adapt quickly to whatever the problem needs, and I do my best work when I have room to explore before settling on an answer.";
-
-export const outsideWork =
-  "Outside work: music and environmental conservation. Open to projects in either.";
+export const about = [
+  "I’ve spent five years designing brand, web and product for startups across fintech, logistics, health and AI, and I’ve never fit neatly into a traditional role. I adapt quickly to whatever the problem needs, and I do my best work when I have room to explore before settling on an answer.",
+  "I care about music and environmental conservation. If you’re building something in either, I’d like to talk.",
+];
 
 export const experience = [
   { role: "Product Designer", place: "Chariot", years: "2024 — 2026" },
@@ -173,7 +169,7 @@ export const showProcessSection = false;
 export const connectLinks = [
   { label: "siddharththorat96@gmail.com", href: "mailto:siddharththorat96@gmail.com" },
   { label: "Instagram", href: "https://www.instagram.com/_siddharth_thorat/" },
-  { label: "Resume (PDF)", href: "/resume.pdf" },
+  { label: "Resume", href: "/resume.pdf" },
 ] as const;
 
 export const ratioClass: Record<Visual["ratio"], string> = {

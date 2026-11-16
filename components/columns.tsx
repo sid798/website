@@ -8,7 +8,7 @@ import { Media } from "@/components/media";
 import { ProjectMeta } from "@/components/project-meta";
 import { ProjectSummary } from "@/components/project-summary";
 import { ArchiveLink } from "@/components/archive-link";
-import { experience, outsideWork, projects, ratioClass, type Project } from "@/lib/content";
+import { experience, projects, ratioClass, type Project } from "@/lib/content";
 
 function Label({ children }: { children: React.ReactNode }) {
   return <p className="text-muted">{children}</p>;
@@ -66,9 +66,7 @@ export function Columns() {
                   <span className="shrink-0 tabular-nums text-muted">{item.years}</span>
                 </li>
               ))}
-            </ul>
-            <p className="mt-4 text-muted">{outsideWork}</p>
-          </div>
+            </ul>          </div>
           <ProcessBlock />
           <div>
             <ConnectList />

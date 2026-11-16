@@ -10,8 +10,8 @@ export function SiteIntro({
   aboutStyle?: CSSProperties;
 }) {
   return (
-    <div className="space-y-4">
-      <div className="space-y-2">
+    <div className="space-y-8">
+      <div className="enter">
         <h1>Siddharth Thorat</h1>
         <p className="text-muted">{headline}</p>
       </div>

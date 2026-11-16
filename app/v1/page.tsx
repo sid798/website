@@ -5,7 +5,7 @@ import { MarkerTrail } from "@/components/marker-trail";
 import { Media } from "@/components/media";
 import { ProjectMeta } from "@/components/project-meta";
 import { ArchiveLink } from "@/components/archive-link";
-import { experience, outsideWork, projects, type Project } from "@/lib/content";
+import { experience, projects, type Project } from "@/lib/content";
 
 const column = "mx-auto w-full max-w-[440px] px-5 lg:mx-0 lg:ml-[33.333%] lg:w-1/3 lg:max-w-none lg:px-3";
 const rowPad = "px-5 scroll-px-5 lg:pl-[calc(33.333%-0.25rem)] lg:pr-3 lg:scroll-pl-[calc(33.333%-0.25rem)]";
@@ -77,9 +77,7 @@ export default function V1() {
               <span className="shrink-0 tabular-nums text-muted">{item.years}</span>
             </li>
           ))}
-        </ul>
-        <p className="mt-4 text-muted">{outsideWork}</p>
-      </section>
+        </ul>      </section>
 
       <section className={`${column} mt-20`}>
         <ConnectList />

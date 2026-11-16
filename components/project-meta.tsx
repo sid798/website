@@ -1,8 +1,5 @@
 import { ActionLink } from "@/components/action-link";
-import { ndaPrefix, pendingHref, walkthroughHref, type Project } from "@/lib/content";
-
-const inline =
-  "underline decoration-ink/30 underline-offset-[3px] transition-[text-decoration-color] duration-200 hover:decoration-ink";
+import { ndaNote, pendingHref, type Project } from "@/lib/content";
 
 /** Role, outcome, NDA note and outbound links shared by both layouts. */
 export function ProjectMeta({ project }: { project: Project }) {
@@ -26,14 +23,7 @@ export function ProjectMeta({ project }: { project: Project }) {
           {project.outcome}
         </p>
       ) : null}
-      {project.nda ? (
-        <p className="text-muted">
-          {ndaPrefix}
-          <a href={walkthroughHref} className={`text-muted ${inline}`}>
-            Detailed walkthrough available on request.
-          </a>
-        </p>
-      ) : null}
+      {project.nda ? <p className="text-muted">{ndaNote}</p> : null}
       {hasLinks ? (
         <p className="flex flex-wrap gap-x-4 gap-y-1">
           {hasCaseStudy && project.caseStudyLink ? (

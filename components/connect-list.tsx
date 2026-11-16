@@ -1,7 +1,7 @@
 import { connectLinks } from "@/lib/content";
 
 const linkClass =
-  "underline decoration-ink/30 underline-offset-[3px] transition-[text-decoration-color] duration-200 hover:decoration-ink";
+  "text-muted underline decoration-muted/40 underline-offset-[3px] transition-colors duration-200 hover:text-ink hover:decoration-ink";
 
 export function ConnectList() {
   return (
