@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { AboutCopy } from "@/components/about-copy";
 import { ConnectList } from "@/components/connect-list";
 import { ProcessBlock } from "@/components/process-block";
@@ -19,21 +18,12 @@ function Card({ project }: { project: Project }) {
   const cover = project.cover ?? project.visuals[0];
   const frame = (
     <div className="aspect-[4/3] h-[38vh] min-h-[220px] overflow-hidden rounded-lg">
-      <Media
-        visual={cover}
-        className={project.caseStudy ? "transition-transform duration-700 ease-[var(--ease-out)] group-hover:scale-[1.02]" : ""}
-      />
+      <Media visual={cover} />
     </div>
   );
   return (
     <li className="shrink-0 snap-start">
-      {project.caseStudy ? (
-        <Link href={`/work/${project.slug}`} className="group block">
-          {frame}
-        </Link>
-      ) : (
-        frame
-      )}
+      {frame}
       <div className="mt-2 max-w-[340px] space-y-3 px-1.5">
         <div className="space-y-1">
           <p>{project.name}</p>

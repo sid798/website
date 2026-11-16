@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono, Source_Serif_4 } from "next/font/google";
 import { VersionSwitch } from "@/components/version-switch";
 import { fontKey } from "@/lib/fonts";
+import { siteDescription, siteUrl } from "@/lib/site";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -21,8 +22,30 @@ const sourceSerif = Source_Serif_4({
 });
 
 export const metadata: Metadata = {
-  title: "Siddharth Thorat",
-  description: "Designer working across brand, product, motion, print, space and code.",
+  metadataBase: new URL(siteUrl),
+  title: {
+    default: "Siddharth Thorat",
+    template: "%s — Siddharth Thorat",
+  },
+  description: siteDescription,
+  icons: {
+    icon: [{ url: "/icon.svg", type: "image/svg+xml" }],
+  },
+  openGraph: {
+    type: "website",
+    locale: "en_IN",
+    url: siteUrl,
+    siteName: "Siddharth Thorat",
+    title: "Siddharth Thorat",
+    description: siteDescription,
+    images: [{ url: "/og.jpg", width: 1200, height: 630, alt: "Siddharth Thorat — Designer" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Siddharth Thorat",
+    description: siteDescription,
+    images: ["/og.jpg"],
+  },
 };
 
 const restoreFont = `try{var f=localStorage.getItem(${JSON.stringify(fontKey)});if(f)document.documentElement.dataset.font=f}catch(e){}`;

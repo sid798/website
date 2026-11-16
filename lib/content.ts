@@ -53,7 +53,7 @@ export const projects: Project[] = [
   {
     slug: "cruise-money",
     name: "Cruise Money",
-    scope: ["Website Design", "Marketing"],
+    scope: ["Branding", "Website", "Marketing"],
     context: "At Chariot",
     summary:
       "Cruise is an AI money companion for India’s affluent professionals, helping them manage investments and plan their finances through conversation. Launching as a new company, it needed everything from the ground up: identity, logo, website, and marketing. The brand is positioned around people who want their money to support the lifestyle they’re working toward, with each touchpoint designed to win its first users.",
@@ -80,7 +80,7 @@ export const projects: Project[] = [
   {
     slug: "alai",
     name: "Alai",
-    scope: ["Product Design", "Web Design"],
+    scope: ["Website", "Product Design"],
     context: "At Chariot",
     summary:
       "Alai is a Y Combinator-backed AI tool for creating polished presentations quickly. The work spanned the website and the product experience, including how agentic editing sits alongside traditional manual control, that lets users get the speed of AI without losing authorship. Alai launched on Product Hunt as #2 Product of the Day.",
@@ -99,7 +99,7 @@ export const projects: Project[] = [
   {
     slug: "freight-tiger",
     name: "Freight Tiger",
-    scope: ["Website Design"],
+    scope: ["Branding", "Website"],
     context: "At Chariot",
     summary:
       "Freight Tiger is a logistics platform that helps businesses manage freight and transportation. The engagement covered a redesign of the brand language and website, replacing a dense, utilitarian look with a clear, consistent visual system that makes a complex product easier to understand.",
@@ -126,7 +126,7 @@ export const projects: Project[] = [
   {
     slug: "healthflex",
     name: "Healthflex by Loop",
-    scope: ["Website Design"],
+    scope: ["Branding", "Website"],
     context: "At Chariot",
     summary:
       "Healthflex is a flexible health benefits product from Loop, which provides health insurance and benefits for employers. As a new offering with no existing site or visual direction, it called for a website designed from scratch. The result is an identity that stands on its own while remaining part of the Loop family.",
@@ -136,24 +136,6 @@ export const projects: Project[] = [
     visuals: [
       { ratio: "classic", tone: "#d4eb17", laptop: healthflexHero },
       { ratio: "classic", tone: "#d4eb17", image: "/work/healthflex/slide.webp" },
-    ],
-  },
-];
-
-/** Hidden from the lists for now; the case study page still builds from here. */
-export const parked: Project[] = [
-  {
-    slug: "life-in-progress",
-    name: "Life in Progress",
-    scope: ["Product Design", "Creative Direction"],
-    context: "Personal project",
-    summary:
-      "Product design and creative direction for Life in Progress, a personal project. Placeholder: one or two sentences on what it is and why you made it.",
-    caseStudy: true,
-    visuals: [
-      { ratio: "landscape", tone: placeholder },
-      { ratio: "portrait", tone: placeholder },
-      { ratio: "landscape", tone: placeholder },
     ],
   },
 ];
@@ -170,7 +152,7 @@ export const about = [
 
 export const experience = [
   { role: "Product Designer", place: "Chariot", years: "2024 — 2026" },
-  { role: "Freelance Graphic Designer", place: "Independent", years: "2022 — 2024" },
+  { role: "Freelance Graphic Designer", place: "Independent", years: "2021 — 2024" },
 ];
 
 /** Set to `true` to show the Process label and code demo on the homepage layouts. */
