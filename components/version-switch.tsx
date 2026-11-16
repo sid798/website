@@ -2,7 +2,8 @@
 
 import Link from "next/link";
 import { useSyncExternalStore } from "react";
-import { fontKey, fonts } from "@/lib/fonts";
+import { draftUi, defaultFont, showDraftSwitcher, visibleFonts } from "@/lib/draft-ui";
+import { fontKey } from "@/lib/fonts";
 
 function subscribe(onChange: () => void) {
   const observer = new MutationObserver(onChange);
@@ -10,7 +11,7 @@ function subscribe(onChange: () => void) {
   return () => observer.disconnect();
 }
 
-const read = () => document.documentElement.dataset.font ?? "f1";
+const read = () => document.documentElement.dataset.font ?? defaultFont;
 
 function pick(font: string) {
   document.documentElement.dataset.font = font;
@@ -21,19 +22,26 @@ function pick(font: string) {
 
 const item = "rounded-full px-3 py-1 transition-colors duration-200 hover:bg-[#f2f2f2]";
 
-/** Draft-only switch for comparing layouts and fonts. */
+/** Draft-only switch for comparing layouts and fonts. Hidden when everything is locked. */
 export function VersionSwitch() {
-  const current = useSyncExternalStore(subscribe, read, () => "f1");
+  const current = useSyncExternalStore(subscribe, read, () => defaultFont);
+  const fonts = visibleFonts();
+
+  if (!showDraftSwitcher()) return null;
 
   return (
     <nav className="fixed bottom-4 right-4 z-50 flex items-center gap-1 rounded-full border border-line bg-paper/90 p-1 text-xs backdrop-blur">
-      <Link href="/" className={item}>
-        V1 Centre
-      </Link>
-      <Link href="/v2" className={item}>
-        V2 Columns
-      </Link>
-      <span className="mx-1 h-4 w-px bg-line" />
+      {draftUi.showV1InSwitcher ? (
+        <>
+          <Link href="/v1" className={item}>
+            V1 Centre
+          </Link>
+          <Link href="/" className={item}>
+            V2 Columns
+          </Link>
+        </>
+      ) : null}
+      {draftUi.showV1InSwitcher && fonts.length > 0 ? <span className="mx-1 h-4 w-px bg-line" /> : null}
       {fonts.map((font) => (
         <button
           key={font}

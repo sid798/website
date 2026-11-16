@@ -112,9 +112,11 @@ export function Columns() {
                           isActive ? "lg:text-ink" : "lg:text-muted lg:hover:text-ink"
                         }`}
                       >
-                        <span>{p.name}</span>
-                        <span className="text-muted">
-                          <span className="hidden lg:inline">{p.scope[0]}</span>
+                        <span className="min-w-0 shrink">{p.name}</span>
+                        <span className="shrink-0 text-right text-muted">
+                          <span className="hidden max-w-[11rem] text-pretty lg:inline">
+                            {p.scope.join(", ")}
+                          </span>
                           <span className="lg:hidden">{isOpen ? "−" : "+"}</span>
                         </span>
                       </button>

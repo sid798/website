@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono, Source_Serif_4 } from "next/font/google";
 import { VersionSwitch } from "@/components/version-switch";
+import { defaultFont } from "@/lib/draft-ui";
 import { fontKey } from "@/lib/fonts";
 import { siteDescription, siteUrl } from "@/lib/site";
 import "./globals.css";
@@ -48,12 +49,14 @@ export const metadata: Metadata = {
   },
 };
 
-const restoreFont = `try{var f=localStorage.getItem(${JSON.stringify(fontKey)});if(f)document.documentElement.dataset.font=f}catch(e){}`;
+const defaultFontLiteral = JSON.stringify(defaultFont);
+const restoreFont = `try{var k=${JSON.stringify(fontKey)},d=${defaultFontLiteral},f=localStorage.getItem(k);if(f==="f1"&&d==="f2")f=d;if(f)document.documentElement.dataset.font=f;else document.documentElement.dataset.font=d}catch(e){document.documentElement.dataset.font=${defaultFontLiteral}}`;
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="en"
+      data-font={defaultFont}
       className={`${geistSans.variable} ${geistMono.variable} ${sourceSerif.variable} antialiased`}
       suppressHydrationWarning
     >
