@@ -68,13 +68,16 @@ export default function V1() {
 
       <section className={`${column} mt-32`}>
         <Label>Experience</Label>
-        <ul className="mt-1">
+        <ul className="mt-1 space-y-2">
           {experience.map((item) => (
-            <li key={item.role} className="flex justify-between gap-6">
-              <span>
-                {item.role}, {item.place}
-              </span>
-              <span className="shrink-0 tabular-nums text-muted">{item.years}</span>
+            <li key={item.role}>
+              <div className="flex justify-between gap-6">
+                <span>
+                  {item.role}, {item.place}
+                </span>
+                <span className="shrink-0 tabular-nums text-muted">{item.years}</span>
+              </div>
+              {"detail" in item ? <p className="text-muted">{item.detail}</p> : null}
             </li>
           ))}
         </ul>      </section>

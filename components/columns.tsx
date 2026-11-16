@@ -72,13 +72,16 @@ export function Columns() {
         <div className="order-3 mt-16 space-y-12 px-5 lg:mt-0 lg:p-0">
           <div>
             <Label>Experience</Label>
-            <ul className="mt-2">
+            <ul className="mt-2 space-y-2">
               {experience.map((item) => (
-                <li key={item.role} className="flex items-start justify-between gap-4">
-                  <span className="max-w-[200px]">
-                    {item.role}, {item.place}
-                  </span>
-                  <span className="shrink-0 tabular-nums text-muted">{item.years}</span>
+                <li key={item.role}>
+                  <div className="flex items-start justify-between gap-4">
+                    <span className="max-w-[200px]">
+                      {item.role}, {item.place}
+                    </span>
+                    <span className="shrink-0 tabular-nums text-muted">{item.years}</span>
+                  </div>
+                  {"detail" in item ? <p className="text-muted">{item.detail}</p> : null}
                 </li>
               ))}
             </ul>

@@ -40,7 +40,7 @@ export type Project = {
 /** Replace `#` when the case study URL is ready. */
 export const pendingHref = "#";
 
-export const ndaNote = "Project under NDA. Schedule call for a detailed walkthrough";
+export const ndaNote = "Under NDA. Happy to walk you through it on a call.";
 
 export const headline = "Brand and product designer.";
 
@@ -55,6 +55,7 @@ export const projects: Project[] = [
     name: "Alai",
     scope: ["Website", "Product Design"],
     context: "At Chariot",
+    blurb: "Worked directly with the founders and engineers to design the product and website.",
     summary:
       "Alai is a Y Combinator-backed AI tool for creating polished presentations quickly. The work spanned the website and the product experience, including how agentic editing sits alongside traditional manual control, that lets users get the speed of AI without losing authorship. Alai launched on Product Hunt as #2 Product of the Day.",
     summaryLinks: [
@@ -102,6 +103,7 @@ export const projects: Project[] = [
     name: "Healthflex by Loop",
     scope: ["Branding", "Website"],
     context: "At Chariot",
+    blurb: "Designed the website from scratch, working directly with Loop’s founders and managers.",
     summary:
       "Healthflex is a flexible health benefits product from Loop, which provides health insurance and benefits for employers. As a new offering with no existing site or visual direction, it called for a website designed from scratch. The result is an identity that stands on its own while remaining part of the Loop family.",
     nda: true,
@@ -117,6 +119,7 @@ export const projects: Project[] = [
     name: "Freight Tiger",
     scope: ["Branding", "Website"],
     context: "At Chariot",
+    blurb: "Led the brand and website redesign, working with Freight Tiger’s project managers and developers.",
     summary:
       "Freight Tiger is a logistics platform that helps businesses manage freight and transportation. The engagement covered a redesign of the brand language and website, replacing a dense, utilitarian look with a clear, consistent visual system that makes a complex product easier to understand.",
     nda: true,
@@ -152,7 +155,12 @@ export const about = [
 ];
 
 export const experience = [
-  { role: "Product Designer", place: "Chariot", years: "2024 — Present" },
+  {
+    role: "Product Designer",
+    place: "Chariot",
+    years: "2024 — Present",
+    detail: "Ran projects end to end, working with founders, managers, developers and marketing teams.",
+  },
   { role: "Freelance Graphic Designer", place: "Independent", years: "2021 — 2024" },
 ];
 
