@@ -8,6 +8,12 @@ const nextConfig: NextConfig = {
     return [
       { source: "/v1", destination: "/", permanent: true },
       { source: "/v2", destination: "/", permanent: true },
+      ...["www.siddharththorat.com", "siddharth-thorat.vercel.app"].map((host) => ({
+        source: "/:path*",
+        has: [{ type: "host" as const, value: host }],
+        destination: "https://siddharththorat.com/:path*",
+        permanent: true,
+      })),
     ];
   },
   turbopack: {
