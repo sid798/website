@@ -1,5 +1,5 @@
 import { ActionLink } from "@/components/action-link";
-import { ndaNote, pendingHref, type Project } from "@/lib/content";
+import { pendingHref, type Project } from "@/lib/content";
 
 function hasCaseStudy(project: Project) {
   return Boolean(project.caseStudyLink && project.caseStudyLink !== pendingHref);
@@ -21,20 +21,5 @@ export function ProjectLinks({ project, tone }: { project: Project; tone?: "ink"
         </ActionLink>
       ) : null}
     </span>
-  );
-}
-
-/** NDA note and outbound links, stacked. */
-export function ProjectMeta({ project }: { project: Project }) {
-  const links = project.link || hasCaseStudy(project);
-  return (
-    <div className="space-y-4">
-      {project.nda ? <p className="text-soft">{ndaNote}</p> : null}
-      {links ? (
-        <p>
-          <ProjectLinks project={project} />
-        </p>
-      ) : null}
-    </div>
   );
 }
