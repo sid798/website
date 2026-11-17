@@ -164,7 +164,12 @@ export const experience = [
     years: "2024 — Present",
     detail: "Ran projects end to end, working with founders, managers, developers and marketing teams.",
   },
-  { role: "Freelance Graphic Designer", place: "Independent", years: "2021 — 2024" },
+  {
+    role: "Freelance Graphic Designer",
+    place: "Independent",
+    years: "2021 — 2024",
+    detail: "Earlier work across advertising, packaging and art direction at Ogilvy, NH7 and Coca-Cola.",
+  },
 ];
 
 export const showProcessSection = false;
