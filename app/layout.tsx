@@ -17,7 +17,7 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: "Siddharth Thorat",
+    default: "Siddharth Thorat — Brand and Product Designer",
     template: "%s — Siddharth Thorat",
   },
   description: siteDescription,

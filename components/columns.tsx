@@ -25,10 +25,10 @@ function Details({ project }: { project: Project }) {
     <div className="space-y-6">
       <div className="space-y-1">
         <div className="flex flex-wrap items-center gap-x-3">
-          <p>{project.name}</p>
+          <p className="hidden lg:block">{project.name}</p>
           {project.link || project.caseStudyLink ? (
             <>
-              <span aria-hidden className="text-faint">
+              <span aria-hidden className="hidden text-faint lg:inline">
                 |
               </span>
               <ProjectLinks project={project} tone="soft" />
@@ -66,14 +66,19 @@ const scroll = "lg:h-svh lg:overflow-y-auto no-scrollbar";
 
 export function Columns() {
   const [active, setActive] = useState(projects[0].slug);
-  const [open, setOpen] = useState<string | null>(null);
+  const [open, setOpen] = useState(projects[0].slug);
   const visuals = useRef<HTMLDivElement>(null);
   const project = all.find((p) => p.slug === active) ?? projects[0];
 
   function select(slug: string) {
     setActive(slug);
-    setOpen((current) => (current === slug ? null : slug));
+    setOpen(slug);
     visuals.current?.scrollTo({ top: 0 });
+    if (slug !== open && window.matchMedia("(max-width: 1023px)").matches) {
+      requestAnimationFrame(() =>
+        document.getElementById(`project-${slug}`)?.scrollIntoView({ block: "start", behavior: "smooth" }),
+      );
+    }
   }
 
   return (
@@ -132,7 +137,7 @@ export function Columns() {
                   const isActive = p.slug === active;
                   const isOpen = p.slug === open;
                   return (
-                    <li key={p.slug}>
+                    <li key={p.slug} id={`project-${p.slug}`} className="scroll-mt-4">
                       <button
                         type="button"
                         onClick={() => select(p.slug)}
@@ -152,11 +157,11 @@ export function Columns() {
                       </button>
                       {isOpen ? (
                         <div className="enter space-y-6 pb-6 pt-1 lg:hidden">
-                          <ul className="no-scrollbar -mx-5 flex snap-x gap-3 overflow-x-auto px-5 scroll-px-5">
+                          <ul className="no-scrollbar -mx-5 flex snap-x snap-mandatory items-start gap-3 overflow-x-auto px-5 scroll-px-5">
                             {p.visuals.map((visual, i) => (
                               <li
                                 key={i}
-                                className={`h-[42vh] shrink-0 snap-start overflow-hidden rounded-lg ${ratioClass[visual.ratio]}`}
+                                className={`w-[80%] shrink-0 snap-start overflow-hidden rounded-lg ${ratioClass[visual.ratio]}`}
                               >
                                 <Media visual={visual} />
                               </li>
