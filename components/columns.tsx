@@ -152,18 +152,19 @@ export function Columns() {
                           <span className="hidden max-w-[208px] text-pretty lg:inline-block">
                             {p.scope.join(", ")}
                           </span>
-                          <span className="text-muted lg:hidden">{isOpen ? "−" : "+"}</span>
+                          {isOpen ? null : <span className="text-muted lg:hidden">+</span>}
                         </span>
                       </button>
                       {isOpen ? (
                         <div className="enter space-y-6 pb-6 pt-1 lg:hidden">
-                          <ul className="no-scrollbar -mx-5 flex snap-x snap-mandatory items-start gap-3 overflow-x-auto px-5 scroll-px-5">
+                          <ul className="no-scrollbar -mx-5 flex snap-x snap-mandatory items-stretch gap-3 overflow-x-auto px-5 scroll-px-5">
                             {p.visuals.map((visual, i) => (
                               <li
                                 key={i}
                                 className="aspect-[4/3] w-[80%] shrink-0 snap-start overflow-hidden rounded-lg"
                               >
-                                <Media visual={visual} letterbox={visual.ratio !== "classic"} />
+                                {/* Same 4:3 frame for every slide. No letterbox by ratio — that made heights feel uneven. */}
+                                <Media visual={visual} />
                               </li>
                             ))}
                           </ul>
