@@ -11,10 +11,12 @@ export type Visual = Screen & {
   phones?: Screen[];
   laptop?: Screen;
   corner?: Screen;
-  fit?: "contain" | "inset";
+  fit?: "contain" | "inset" | "stage";
+  /** Full-bleed frame image; used with fit:"stage" so the video can sit edge-to-edge in height. */
+  backdrop?: string;
   border?: boolean;
   /** Mobile carousel override when the desktop asset doesn’t read well at phone width. */
-  mobile?: Screen;
+  mobile?: Screen & { backdrop?: string; fit?: Visual["fit"]; border?: boolean; tone?: string };
 };
 
 export const placeholder = "#110326";
@@ -145,6 +147,10 @@ export const projects: Project[] = [
         video: ["/work/freight-tiger/marketplace.webm", "/work/freight-tiger/marketplace.mp4"],
         image: "/work/freight-tiger/marketplace.jpg",
         mobile: {
+          fit: "stage",
+          tone: "#f7f4ef",
+          border: true,
+          backdrop: "/work/freight-tiger/marketplace-m-bg.webp",
           video: ["/work/freight-tiger/marketplace-m.webm", "/work/freight-tiger/marketplace-m.mp4"],
           image: "/work/freight-tiger/marketplace-m.jpg",
         },

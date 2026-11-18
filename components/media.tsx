@@ -6,7 +6,15 @@ import type { Screen, Visual } from "@/lib/content";
 /** Where the transparent screen sits inside /work/device-phone.png (1666 × 3393). */
 const phoneScreen = { left: "5.2%", top: "2.2%", width: "89.7%", height: "95.6%" };
 
-function Fill({ screen, fit = "object-cover" }: { screen: Screen; fit?: string }) {
+function Fill({
+  screen,
+  fit = "object-cover",
+  className = "size-full",
+}: {
+  screen: Screen;
+  fit?: string;
+  className?: string;
+}) {
   const video = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
@@ -24,7 +32,7 @@ function Fill({ screen, fit = "object-cover" }: { screen: Screen; fit?: string }
     return (
       <video
         ref={video}
-        className={`size-full ${fit}`}
+        className={`${className} ${fit}`}
         poster={screen.image}
         muted
         loop
@@ -41,7 +49,7 @@ function Fill({ screen, fit = "object-cover" }: { screen: Screen; fit?: string }
 
   if (screen.image) {
     // eslint-disable-next-line @next/next/no-img-element
-    return <img className={`size-full ${fit}`} src={screen.image} alt="" loading="lazy" />;
+    return <img className={`${className} ${fit}`} src={screen.image} alt="" loading="lazy" />;
   }
 
   return null;
@@ -126,6 +134,21 @@ export function Media({
     return (
       <div className={`flex size-full items-center justify-center p-[6%] ${className}`} style={{ background: visual.tone }}>
         <Fill screen={visual} fit="object-contain" />
+      </div>
+    );
+  }
+
+  // Backdrop fills the frame; media is full height so portrait video isn’t cropped.
+  if (visual.fit === "stage" || visual.backdrop) {
+    return (
+      <div className={`relative size-full overflow-hidden ${className}`} style={{ background: visual.tone }}>
+        {visual.backdrop ? (
+          // eslint-disable-next-line @next/next/no-img-element
+          <img className="absolute inset-0 size-full object-cover" src={visual.backdrop} alt="" loading="lazy" />
+        ) : null}
+        <div className="relative flex size-full items-center justify-center">
+          <Fill screen={visual} className="h-full w-auto max-w-none" fit="object-contain" />
+        </div>
       </div>
     );
   }
