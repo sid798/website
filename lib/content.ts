@@ -176,7 +176,6 @@ export const showProcessSection = false;
 
 export const connectLinks = [
   { label: "siddharththorat96@gmail.com", href: "mailto:siddharththorat96@gmail.com" },
-  { label: "Resume", href: "/resume.pdf" },
 ] as const;
 
 export const ratioClass: Record<Visual["ratio"], string> = {
