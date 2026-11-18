@@ -158,15 +158,20 @@ export function Columns() {
                       {isOpen ? (
                         <div className="enter space-y-6 pb-6 pt-1 lg:hidden">
                           <ul className="no-scrollbar -mx-5 flex snap-x snap-mandatory items-stretch gap-3 overflow-x-auto px-5 scroll-px-5">
-                            {p.visuals.map((visual, i) => (
-                              <li
-                                key={i}
-                                className="aspect-[4/3] w-[80%] shrink-0 snap-start overflow-hidden rounded-lg"
-                              >
-                                {/* Same 4:3 frame for every slide. No letterbox by ratio — that made heights feel uneven. */}
-                                <Media visual={visual} />
-                              </li>
-                            ))}
+                            {p.visuals.map((visual, i) => {
+                              const mobileVisual = visual.mobile
+                                ? { ...visual, ...visual.mobile, mobile: undefined }
+                                : visual;
+                              return (
+                                <li
+                                  key={i}
+                                  className="aspect-[4/3] w-[80%] shrink-0 snap-start overflow-hidden rounded-lg"
+                                >
+                                  {/* Same 4:3 frame for every slide. No letterbox by ratio — that made heights feel uneven. */}
+                                  <Media visual={mobileVisual} />
+                                </li>
+                              );
+                            })}
                           </ul>
                           <Details project={p} />
                         </div>

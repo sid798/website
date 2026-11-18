@@ -13,6 +13,8 @@ export type Visual = Screen & {
   corner?: Screen;
   fit?: "contain" | "inset";
   border?: boolean;
+  /** Mobile carousel override when the desktop asset doesn’t read well at phone width. */
+  mobile?: Screen;
 };
 
 export const placeholder = "#110326";
@@ -142,6 +144,10 @@ export const projects: Project[] = [
         border: true,
         video: ["/work/freight-tiger/marketplace.webm", "/work/freight-tiger/marketplace.mp4"],
         image: "/work/freight-tiger/marketplace.jpg",
+        mobile: {
+          video: ["/work/freight-tiger/marketplace-m.webm", "/work/freight-tiger/marketplace-m.mp4"],
+          image: "/work/freight-tiger/marketplace-m.jpg",
+        },
       },
     ],
   },
