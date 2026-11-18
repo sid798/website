@@ -11,7 +11,7 @@ export type Visual = Screen & {
   phones?: Screen[];
   laptop?: Screen;
   corner?: Screen;
-  fit?: "contain" | "inset" | "stage";
+  fit?: "contain" | "inset" | "stage" | "panel";
   /** Full-bleed frame image; used with fit:"stage" so the video can sit edge-to-edge in height. */
   backdrop?: string;
   border?: boolean;
@@ -122,7 +122,7 @@ export const projects: Project[] = [
       {
         ratio: "wide",
         tone: "#d4eb17",
-        fit: "inset",
+        fit: "panel",
         video: ["/work/healthflex/reel.webm", "/work/healthflex/reel.mp4"],
         image: "/work/healthflex/reel.jpg",
       },

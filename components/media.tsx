@@ -138,6 +138,17 @@ export function Media({
     );
   }
 
+  // Near-full media on a brand ground, with a light pad and rounded corners.
+  if (visual.fit === "panel") {
+    return (
+      <div className={`flex size-full items-center justify-center p-1.5 ${className}`} style={{ background: visual.tone }}>
+        <div className="size-full overflow-hidden rounded-xl">
+          <Fill screen={visual} fit="object-cover" />
+        </div>
+      </div>
+    );
+  }
+
   // Backdrop fills the frame; media is full height so portrait video isn’t cropped.
   if (visual.fit === "stage" || visual.backdrop) {
     return (
