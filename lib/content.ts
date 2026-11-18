@@ -119,6 +119,13 @@ export const projects: Project[] = [
     visuals: [
       { ratio: "classic", tone: "#d4eb17", laptop: healthflexHero },
       { ratio: "classic", tone: "#d4eb17", image: "/work/healthflex/slide.webp" },
+      {
+        ratio: "wide",
+        tone: "#d4eb17",
+        fit: "inset",
+        video: ["/work/healthflex/reel.webm", "/work/healthflex/reel.mp4"],
+        image: "/work/healthflex/reel.jpg",
+      },
     ],
   },
   {
