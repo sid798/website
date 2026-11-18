@@ -172,7 +172,7 @@ export const archive = {
 };
 
 export const about = [
-  "I’ve spent five years designing across advertising, marketing, branding, and product, and I’ve never fit neatly into a traditional role. I adapt quickly to whatever the problem needs, and I do my best work when I have room to explore before settling on an answer.",
+  "I’ve spent five years designing across advertising, marketing, branding, and product. I adapt quickly to whatever the problem needs, and I do my best work when I have room to explore before settling on an answer.",
   "I care about music and environmental conservation, and I want my work to end up there. If you’re building something in either, I’d like to talk.",
 ];
 
