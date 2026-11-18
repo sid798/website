@@ -12,9 +12,7 @@ export function SiteIntro({
   return (
     <div className="space-y-4">
       <div className="enter space-y-1">
-        <h1>
-          <span className="wave">Siddharth Thorat</span>
-        </h1>
+        <h1>Siddharth Thorat</h1>
         <p className="text-muted">{headline}</p>
       </div>
       <AboutCopy className={aboutClassName} style={aboutStyle} />

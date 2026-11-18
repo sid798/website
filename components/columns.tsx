@@ -138,13 +138,11 @@ export function Columns() {
                         onClick={() => select(p.slug)}
                         aria-pressed={isActive}
                         aria-expanded={isOpen}
-                        className={`wave-trigger flex w-full justify-between gap-4 py-2.5 text-left transition-colors duration-200 lg:py-0 ${
+                        className={`flex w-full justify-between gap-4 py-2.5 text-left transition-colors duration-200 lg:py-0 ${
                           isActive ? "lg:text-ink" : "lg:text-soft lg:hover:text-ink"
                         }`}
                       >
-                        <span className="min-w-0 shrink break-words">
-                          <span className="wave">{p.name}</span>
-                        </span>
+                        <span className="min-w-0 shrink break-words">{p.name}</span>
                         <span className="shrink-0 text-right">
                           <span className="hidden max-w-[208px] text-pretty lg:inline-block">
                             {p.scope.join(", ")}
