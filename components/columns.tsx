@@ -161,9 +161,9 @@ export function Columns() {
                             {p.visuals.map((visual, i) => (
                               <li
                                 key={i}
-                                className={`w-[80%] shrink-0 snap-start overflow-hidden rounded-lg ${ratioClass[visual.ratio]}`}
+                                className="aspect-[4/3] w-[80%] shrink-0 snap-start overflow-hidden rounded-lg"
                               >
-                                <Media visual={visual} />
+                                <Media visual={visual} letterbox={visual.ratio !== "classic"} />
                               </li>
                             ))}
                           </ul>

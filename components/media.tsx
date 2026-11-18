@@ -75,7 +75,16 @@ function Laptop({ screen }: { screen: Screen }) {
 }
 
 /** A project visual: a looping video when one exists, else an image, else a tone block. */
-export function Media({ visual, className: extra = "" }: { visual: Visual; className?: string }) {
+export function Media({
+  visual,
+  className: extra = "",
+  letterbox = false,
+}: {
+  visual: Visual;
+  className?: string;
+  /** Fit the media inside a frame of a different ratio instead of cropping it. */
+  letterbox?: boolean;
+}) {
   const className = visual.border ? `rounded-[inherit] border border-line ${extra}` : extra;
 
   if (visual.phones?.length) {
@@ -123,7 +132,7 @@ export function Media({ visual, className: extra = "" }: { visual: Visual; class
 
   return (
     <div className={`size-full ${className}`} style={{ background: visual.tone }}>
-      <Fill screen={visual} fit={visual.fit === "contain" ? "object-contain" : "object-cover"} />
+      <Fill screen={visual} fit={letterbox || visual.fit === "contain" ? "object-contain" : "object-cover"} />
     </div>
   );
 }
